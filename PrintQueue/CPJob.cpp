@@ -23,7 +23,7 @@ void CPJob::setText(char * _szText)
 	//Joey: Ich habe keine Ahnung für was wir setText brauchen!
 	//		soll diese Methode die fillQueue ersetzen?
 	//@Theo:falls du das auch denkst, bitte Fertigstellen bzw
-	//		wenn du weist für was es sonst sein könnte!!!
+	//		wenn du weist für was es sonst sein könnte? :)
 	//
 }
 
