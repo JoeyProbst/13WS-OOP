@@ -2,6 +2,8 @@
 #ifndef CPJOB_HEADER
 #define CPJOB_HEADER
 
+//Note: CPJob.h is part of the Assignment1
+
 //
 //class CPJob define a simple printjob with id and text
 //

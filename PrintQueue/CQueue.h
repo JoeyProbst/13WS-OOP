@@ -15,7 +15,7 @@ public:
 	//constructor
 	CQueue(void);//inits the Queue with a start Container
 	
-	//deconstructor
+	//destructor
 	~CQueue(void);
 
 	//accessors

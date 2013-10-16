@@ -12,5 +12,6 @@ CdlContainer::CdlContainer(void)
 //deconstructor ::deletes allocated mem for data
 CdlContainer::~CdlContainer(void)
 {
+	data->~CPJob();
 	delete[] data;
 }

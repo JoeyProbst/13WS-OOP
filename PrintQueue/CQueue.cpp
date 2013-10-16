@@ -18,35 +18,49 @@ CQueue::~CQueue(void)
 //accessor::Adds a new list-element and assigns the given CPJob address.
 void CQueue::push(CPJob *Job)
 {
-	//Using doubly linked list!!!
-	//HAS TO BE REDEFINED
-	if(last->next);
+	//data of existing CdlContainer (see constructor of CQueue) geting Job 
 	last->data=Job;
-	last->next= new CdlContainer;
+	//filled CdlContainer has to point on an empty CdlContainer as next
+	last->next= new CdlContainer();
+	//the empty CdlContainer has to point on the filled one as prev
+	last->next->prev=last;
+	//CQueues' last has to point on the empty CdlContainer
+	last=last->next;
+	//As CQueue got a Job in its empty CdlContainer counter increases
 	counter++;
 }
 
 //accessor::Removes oldest element from the list and returns the pointer to the CPJob.
 CPJob* CQueue::pop(void)
 {
-	if(first->next!=nullptr)
+	if(first->next==nullptr)
+	{
+		std::cout<<"The Queue is already empty!"<<std::endl;
+	}
+	else
 	{
 		CdlContainer *help;
 		help=first->next;
-		delete[] first;
+		CPJob *pJob= first->data;
+		first->~CdlContainer();
 		first=help;
+		first->prev=nullptr;
 		counter--;
+
+		return pJob;//points into nothing as ~CdlContainer called ~CJob!? 
 	}
-	return 0;
 }
 
 //accessor::Prints all elements of the list to the console.
 void CQueue::printJobs(void)
 {
-	//Be aware to stop before printing a second time (bookmark start value)
 	for(int i=0;i<counter;i++)
 	{
-		std::cout<<first->data->szText<<first->data->IPid<<std::endl;
+		//Joey: Hier hab ich noch eine Zugriffsverletzung:
+		//		Unbehandelte Ausnahme bei 0x012E55FD in PrintQueue.exe:
+		//		0xC0000005: Zugriffsverletzung beim Lesen an Position 0x00000004
+		//@Theo: Bitte anschauen!
+		std::cout<<first->data->getText()<<first->data->getPid()<<std::endl;
 		first=first->next;
 	}
 }
