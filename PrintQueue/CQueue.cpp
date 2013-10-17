@@ -41,11 +41,13 @@ CPJob* CQueue::pop(void)
 	{
 		CdlContainer *help;
 		help=first->next;
-		CPJob *pJob= first->data;
-		first->~CdlContainer();
+		CPJob *pJob= first->data;   
+		//first->~CdlContainer();  // Theo: hier haut es mich immer aus dem Programm raus
+		delete [] first->data;  //			Das geht aber leider auch nicht..
 		first=help;
 		first->prev=nullptr;
 		counter--;
+
 
 		return pJob;//points into nothing as ~CdlContainer called ~CJob!? 
 	}
@@ -54,13 +56,12 @@ CPJob* CQueue::pop(void)
 //accessor::Prints all elements of the list to the console.
 void CQueue::printJobs(void)
 {
+		CdlContainer *help2;  // Theo: Du brauchst hier einen Hilfspointer sonst überschreibst du first und du bekommst den Zugriffsfehler.
+		help2 = first;		
 	for(int i=0;i<counter;i++)
 	{
-		//Joey: Hier hab ich noch eine Zugriffsverletzung:
-		//		Unbehandelte Ausnahme bei 0x012E55FD in PrintQueue.exe:
-		//		0xC0000005: Zugriffsverletzung beim Lesen an Position 0x00000004
-		//@Theo: Bitte anschauen!
-		std::cout<<first->data->getText()<<first->data->getPid()<<std::endl;
-		first=first->next;
+		
+		std::cout<<help2->data->getText()<<help2->data->getPid()<<std::endl;
+		help2=help2->next;
 	}
 }
