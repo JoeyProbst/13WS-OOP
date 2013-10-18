@@ -18,13 +18,12 @@ CPJob::~CPJob(void)
 }
 
 //accessor::sets text-field
-void CPJob::setText(char * _szText)
+char* CPJob::setText(char * _szText,char *prevText)  //Theo: gibt dann das zussamengehängte char* zurück.
 {
-	//Joey: Ich habe keine Ahnung für was wir setText brauchen!
-	//		soll diese Methode die fillQueue ersetzen?
-	//@Theo:falls du das auch denkst, bitte Fertigstellen bzw
-	//		wenn du weist für was es sonst sein könnte? :)
-	//
+	
+	//szText= new char[std::strlen(_szText)+1];
+	_szText= std::strcat(prevText, _szText);			//Theo:Hängt char* an char* an, bekomm aber hier eine Zugriffsverletzung
+	return _szText;
 }
 
 //accessor::returns text-field
