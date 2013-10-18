@@ -21,7 +21,7 @@ public:
 	~CPJob(void);
 
 	//accessors
-	char* setText(char *,char*); //sets text-field
+	void setText(char *); //sets text-field
 	char* getText(void); //returns text-field
 	long getPid(void); //returns process-id
 };

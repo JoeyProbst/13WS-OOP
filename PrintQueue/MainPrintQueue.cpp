@@ -9,11 +9,9 @@ void fillQueue(CQueue *pQueue, int num)
 	CPJob *pPJob;
 	for(int i=1; i<=num; i++)//Joey: habe i auf 1 geändert und dafür die schleife bis <= laufen lassen!!! 
 	{
-		char *help;
-
 		pPJob=new CPJob("text",i);
-		help=pPJob->setText(pPJob->getText(),"BlaBla");  //Theo:Zweite Variable(blabla) übergeben. Hab hier eine Zugriffsverletzung.
-		std::cout<<help<<std::endl;						//help wird ausgegeben, würde aber besser sein wenn die wieder in die CPJob zurückgeschrieben wird.
+		//pPJob->setText("BlaBla");  
+		//std::cout<<pPJob->getText()<<std::endl;						
 		pQueue -> push(pPJob);						
 	}
 }

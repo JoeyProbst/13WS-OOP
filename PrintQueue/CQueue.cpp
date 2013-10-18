@@ -36,6 +36,7 @@ CPJob* CQueue::pop(void)
 	if(first->next==nullptr)
 	{
 		std::cout<<"The Queue is already empty!"<<std::endl;
+		return 0;
 	}
 	else
 	{

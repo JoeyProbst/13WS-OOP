@@ -18,12 +18,13 @@ CPJob::~CPJob(void)
 }
 
 //accessor::sets text-field
-char* CPJob::setText(char * _szText,char *prevText)  //Theo: gibt dann das zussamengehängte char* zurück.
+void CPJob::setText(char * _szText)
 {
-	
-	//szText= new char[std::strlen(_szText)+1];
-	_szText= std::strcat(prevText, _szText);			//Theo:Hängt char* an char* an, bekomm aber hier eine Zugriffsverletzung
-	return _szText;
+	//Joey: hab einfach den Teil aus dem Constructor kopiert, da das ja genau das ist was wir machen wollen.
+	//nur delete hab ich hinzugefügt um den zuvor allozierten speicher aufzuräumen.
+	delete[] szText;
+	szText= new char[std::strlen(_szText)+1];
+	std::strcpy(szText, _szText);
 }
 
 //accessor::returns text-field
