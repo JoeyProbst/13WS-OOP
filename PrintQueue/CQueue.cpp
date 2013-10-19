@@ -18,10 +18,11 @@ CQueue::~CQueue(void)
 	CdlContainer *help; 
 	help = first->next;
 	delete first;
+	first=0;
 	first=help;
 	}
 	delete first;
-
+	first=0;
 }
 
 //accessor::Adds a new list-element and assigns the given CPJob address.

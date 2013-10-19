@@ -14,5 +14,6 @@ CdlContainer::CdlContainer(void)
 CdlContainer::~CdlContainer(void)
 {
 	delete data;
+	data=0;
 
 }

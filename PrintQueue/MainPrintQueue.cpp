@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
 
 	//clear Queue
 	delete pQueue;
+	pQueue=0;
 
 	return 0;
 
