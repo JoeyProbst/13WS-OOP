@@ -13,6 +13,14 @@ CQueue::CQueue(void)
 //deconstructor ::deletes allocated mem for all Containers???
 CQueue::~CQueue(void)
 {
+	while(first->next != nullptr)
+	{
+	CdlContainer *help; 
+	help = first->next;
+	delete first;
+	first=help;
+	}
+	delete first;
 }
 
 //accessor::Adds a new list-element and assigns the given CPJob address.
@@ -61,7 +69,7 @@ CPJob* CQueue::pop(void)
 //accessor::Prints all elements of the list to the console.
 void CQueue::printJobs(void)
 {
-		CdlContainer *help2;  // Theo: Du brauchst hier einen Hilfspointer sonst überschreibst du first und du bekommst den Zugriffsfehler.
+		CdlContainer *help2; 
 		help2 = first;		
 	for(int i=0;i<counter;i++)
 	{

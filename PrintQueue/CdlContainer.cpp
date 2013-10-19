@@ -12,6 +12,6 @@ CdlContainer::CdlContainer(void)
 //deconstructor ::deletes allocated mem for data
 CdlContainer::~CdlContainer(void)
 {
-	//?Keine Ahnung wie man die einzelnen Variablen dieses Objekts auflöst!
-	//delete data; So?
+	delete data;
+
 }
