@@ -40,11 +40,15 @@ CPJob* CQueue::pop(void)
 	}
 	else
 	{
+
+		//keep Next element 
 		CdlContainer *help;
 		help=first->next;
-		CPJob *pJob= first->data;   
-		//first->~CdlContainer();  // Theo: hier haut es mich immer aus dem Programm raus
-		delete [] first->data;  //			Das geht aber leider auch nicht..
+		//save data from first element
+		CPJob *pJob= first->data;
+		//delete oldest Container
+		delete first;
+		//commit old first->next to CQueue as new first 
 		first=help;
 		first->prev=nullptr;
 		counter--;
