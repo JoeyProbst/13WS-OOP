@@ -7,6 +7,7 @@ CdlContainer::CdlContainer(void)
 	data= new CPJob("NO DATA",0);
 	next=nullptr;
 
+
 }
 
 //deconstructor ::deletes allocated mem for data

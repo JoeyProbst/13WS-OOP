@@ -21,6 +21,7 @@ CQueue::~CQueue(void)
 	first=help;
 	}
 	delete first;
+
 }
 
 //accessor::Adds a new list-element and assigns the given CPJob address.
