@@ -10,7 +10,7 @@ CQueue::CQueue(void)
 	counter=0;
 }
 
-//deconstructor ::deletes allocated mem for all Containers???
+//destructor ::deletes allocated mem for all Containers???
 CQueue::~CQueue(void)
 {
 	while(first->next != nullptr)

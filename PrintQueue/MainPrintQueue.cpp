@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 	pQueue= new CQueue();
 	fillQueue (pQueue,3);//generates three CPJobs and integrates them one after another, each in a separate CdlContainer (by accessor push()) 
 	pQueue->printJobs();
-	delete pQueue->pop(); //deleting from pop returned Job as this one isn't in the Queue anymore
+	/*delete*/ pQueue->pop(); //deleting from pop returned Job as this one isn't in the Queue anymore
 	pQueue->printJobs();
 
 	//clear Queue
