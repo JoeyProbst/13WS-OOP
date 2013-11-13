@@ -15,3 +15,23 @@ cField::cField(void)
 cField::~cField(void)
 {
 }
+
+cField* getpNorth()
+{
+
+}
+
+cField* getpEast()
+{
+
+}
+	
+cField* getpSouth()
+{
+
+}
+	
+cField* getpWest()
+{
+
+}

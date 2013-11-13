@@ -10,10 +10,12 @@
 class cArea
 {
 private:
-	cField* Field_array[COLUMNS][LINES]; //Joey: Ich denke die simpelste (schöner wäre eine Vierfachverkettete Liste) Variante ist die eines Arrays von Zeigern auf Fields  
+	cField* Array_ofFieldptrs[LINES][COLUMNS]; //Joey: Ich denke die beste Variante ist die eines Arrays von Zeigern auf Fields  
 public:
 	cArea(void);
 	~cArea(void);
+	//accessors
+	cField* getFieldptr(int z,int sp);//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
 };
 
 #endif // !CAREA_HEADER

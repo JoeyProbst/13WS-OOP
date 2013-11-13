@@ -18,6 +18,11 @@ private:
 public:
 	cField(void);
 	~cField(void);
+	//accessors
+	cField* getpNorth();
+	cField* getpEast();
+	cField* getpSouth();
+	cField* getpWest();
 };
 
 #endif // !CFIELD_HEADER
