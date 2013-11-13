@@ -3,13 +3,33 @@
 //Constructor initializes the m x n Array of cField* (environment of our anthill simulation)
 cArea::cArea(void)
 {
-	
-	Array_ofFieldptrs;
-	cField **pEnvironment=&(Array_ofFieldptrs[0][0]);//Joey: pEnvironment ist ein pointer auf das Array von Fields, "Array_ofFieldptrs"! 
-	for (int i = LINES*COLUMNS; i > 0; i--)//Joey: mit 0 vergleichen da schneller!
+	for (int z=0; z< LINES ; z++)
 	{
-		*pEnvironment++=NULL;
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			Array_ofFieldptrs[z][sp]= new cField();
+			if (z!=0)//North
+			{
+				Array_ofFieldptrs[z][sp]->setpNorth(Array_ofFieldptrs[z-1][sp]);
+			}
+			if(sp<COLUMNS-1)
+			{
+				Array_ofFieldptrs[z][sp]->setpEast(Array_ofFieldptrs[z][sp+1]);
+			}
+			if(sp<LINES-1)
+			{
+				Array_ofFieldptrs[z][sp]->setpSouth(Array_ofFieldptrs[z+1][sp]);
+			}
+			if(sp!=0)
+			{
+				Array_ofFieldptrs[z][sp]->setpWest(Array_ofFieldptrs[z][sp-1]);
+			}
+
+		}
+		
+		
 	}
+
 }
 
 

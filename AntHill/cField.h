@@ -16,13 +16,21 @@ private:
 	std::list<cItem>items;
 
 public:
-	cField(void);
+	cField();
 	~cField(void);
 	//accessors
+	void setpNorth(cField*);
+	void setpEast(cField*);
+	void setpSouth(cField*);
+	void setpWest(cField*);
+
 	cField* getpNorth();
 	cField* getpEast();
 	cField* getpSouth();
 	cField* getpWest();
+
+	void adItem();
+
 };
 
 #endif // !CFIELD_HEADER

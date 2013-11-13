@@ -17,6 +17,7 @@ void printEnvironment(cArea environment)//Joey: Nur mal zum überprüfen! ACHTUNG:
 		{
 			std::cout<<"["<<z<<"]["<<sp<<"] "<<environment.getFieldptr(z,sp) <<std::endl;
 		}		
+		
 	}
 	
 }

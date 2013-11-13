@@ -1,8 +1,11 @@
 #include "cField.h"
+#include <list>
+#include <iostream>
+using namespace std;
 
-
-cField::cField(void)
+cField::cField()
 {
+	
 	pNorth=NULL;
 	pEast=NULL;
 	pSouth=NULL;
@@ -16,22 +19,52 @@ cField::~cField(void)
 {
 }
 
-cField* getpNorth()
-{
 
+//set Functions
+void cField::setpNorth(cField* North )
+{
+	pNorth=North;
 }
 
-cField* getpEast()
+void cField::setpEast(cField* East)
 {
+	pEast=East;
+}
 
+void cField::setpSouth(cField* South)
+{
+	pSouth=South;
+}
+
+void cField::setpWest(cField* West)
+{
+	pWest=West;
+}
+
+
+//get Functions
+cField* cField::getpNorth()
+{
+	return 0;
+}
+
+cField* cField::getpEast()
+{
+	return 0;
 }
 	
-cField* getpSouth()
+cField* cField::getpSouth()
 {
-
+	return 0;
 }
 	
-cField* getpWest()
+cField* cField::getpWest()
 {
-
+	return 0;
 }
+
+/*void cField::adItem()
+{
+	items.push_back;
+}
+*/
