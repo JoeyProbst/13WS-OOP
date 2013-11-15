@@ -2,8 +2,8 @@
 #ifndef CAREA_HEADER
 #define CAREA_HEADER
 
-#define COLUMNS 20
-#define LINES 20
+#define COLUMNS 10
+#define LINES 10
 
 #include "cField.h"
 
