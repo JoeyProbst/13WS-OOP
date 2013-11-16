@@ -45,22 +45,22 @@ void cField::setpWest(cField* West)
 //get Functions
 cField* cField::getpNorth()
 {
-	return 0;
+	return pNorth;
 }
 
 cField* cField::getpEast()
 {
-	return 0;
+	return pEast;
 }
 	
 cField* cField::getpSouth()
 {
-	return 0;
+	return pSouth;
 }
 	
 cField* cField::getpWest()
 {
-	return 0;
+	return pWest;
 }
 
 /*void cField::adItem()

@@ -18,15 +18,18 @@ void wait()//Diese Funktion ist von http://www.c-plusplus.de/forum/111042-full u
     std::cin.get();
 }
 
-void printEnvironment(cArea environment)//Joey: Nur mal zum überprüfen! ACHTUNG: Dauert bei sehr großem Array(z.B. 300x300) seine Zeit!
+void printEnvironment(cArea* environment)//Joey: Nur mal zum überprüfen! ACHTUNG: Dauert bei sehr großem Array(z.B. 300x300) seine Zeit!
 {
+	cField* p;
 	std::cout<<"Ausgeben des Arrays von Pointern \"Array_ofFieldptrs\":"<<std::endl;
 	wait();
 	for (int z= 0; z < LINES; z++)
 	{	
 		for (int sp = 0; sp < COLUMNS; sp++)
 		{
-			std::cout<<"["<<z<<"]["<<sp<<"] "<<environment.getFieldptr(z,sp) <<std::endl;
+			p=environment->getFieldptr(z,sp);
+			std::cout<<"["<<z<<"]["<<sp<<"] "<<p<<"	"<<p->getpNorth()<<" "<<p->getpEast()<<" "<<p->getpSouth()<<" "<<p->getpWest()<<std::endl;
+			//std::cout << p <<std::endl;
 		}		
 		
 	}
@@ -35,7 +38,7 @@ void printEnvironment(cArea environment)//Joey: Nur mal zum überprüfen! ACHTUNG:
 
 int main(int argc, char* argv[])
 {
-	cArea environment;
+	cArea* environment=cArea::Instance();
 	printEnvironment(environment);
 	wait();
 	return 0;

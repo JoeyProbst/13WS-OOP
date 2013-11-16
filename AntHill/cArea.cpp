@@ -1,4 +1,15 @@
 #include "cArea.h"
+//Variable to control creation of cArea!
+cArea* cArea::_instance=NULL;
+//Method to control the Variable above!
+cArea* cArea::Instance()
+{
+	if (_instance==NULL)
+	{
+		_instance= new	cArea();
+	}
+	return	_instance;
+}
 
 //Constructor initializes the m x n Array of cField* (environment of our anthill simulation)
 cArea::cArea(void)
