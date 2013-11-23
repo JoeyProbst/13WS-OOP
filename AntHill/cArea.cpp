@@ -46,6 +46,14 @@ cArea::cArea(void)
 
 cArea::~cArea(void)
 {
+	for (int z=0; z< LINES ; z++)
+	{
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			delete Array_ofFieldptrs[z][sp];//Frage: reicht es einfach das Array zu deleten oder muss jedes Field deletet werden?
+			Array_ofFieldptrs[z][sp]=NULL;
+		}
+	}
 }
 
 cField* cArea::getFieldptr(int z,int sp)

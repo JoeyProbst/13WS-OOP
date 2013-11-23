@@ -41,5 +41,6 @@ int main(int argc, char* argv[])
 	cArea* environment=cArea::Instance();
 	printEnvironment(environment);
 	wait();
+	delete environment;
 	return 0;
 }
