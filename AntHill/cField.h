@@ -13,7 +13,7 @@ private:
 	cField* pSouth;
 	cField* pWest;
 	
-	std::list<cItem>items;
+	std::list<cItem*>items;
 
 public:
 	cField();
