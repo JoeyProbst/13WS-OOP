@@ -19,19 +19,26 @@ cArea::cArea(void)
 		for (int sp= 0; sp< COLUMNS; sp++)
 		{
 			Array_ofFieldptrs[z][sp]= new cField();
-			if (z!=0)//North
+		}
+	}
+
+	for (int z=0; z< LINES ; z++)
+	{
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			if (z!=0)//linking Northptr to field above
 			{
 				Array_ofFieldptrs[z][sp]->setpNorth(Array_ofFieldptrs[z-1][sp]);
 			}
-			if(sp<COLUMNS-1)
+			if(sp<COLUMNS-1)//linking Eastptr to field on the right
 			{
 				Array_ofFieldptrs[z][sp]->setpEast(Array_ofFieldptrs[z][sp+1]);
 			}
-			if(sp<LINES-1)
+			if(z<LINES-1)//linking Southptr to field below
 			{
 				Array_ofFieldptrs[z][sp]->setpSouth(Array_ofFieldptrs[z+1][sp]);
 			}
-			if(sp!=0)
+			if(sp!=0)//linking Westptr to the field on the left
 			{
 				Array_ofFieldptrs[z][sp]->setpWest(Array_ofFieldptrs[z][sp-1]);
 			}
