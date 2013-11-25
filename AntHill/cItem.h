@@ -11,6 +11,7 @@ public:
 	~cItem(void);
 	//accessors
 	void act();
+
 };
 
 #endif // !CITEM_HEADER
