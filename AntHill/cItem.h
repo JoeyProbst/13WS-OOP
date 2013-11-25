@@ -10,7 +10,7 @@ public:
 	cItem(void);
 	~cItem(void);
 	//accessors
-	void act();
+	virtual void act() =0;
 };
 
 #endif // !CITEM_HEADER

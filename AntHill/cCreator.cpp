@@ -24,4 +24,6 @@ cCreator::~cCreator(void)
 cItem*	cCreator::create(int selector)
 {
 	//Joey: hier hätte ich mir eine switch case funktion gedacht um die einzelnen Items zu erzeugen!?
+
+	return 0;
 }
