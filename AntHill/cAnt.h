@@ -10,6 +10,7 @@ class cAnt :
 public:
 	cAnt(void);
 	~cAnt(void);
+	//virtual	void act();
 };
 
 #endif // !CANT_HEADER
