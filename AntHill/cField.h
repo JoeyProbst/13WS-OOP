@@ -4,7 +4,6 @@
 
 #include <list>
 #include "cItem.h"
-#include "cCreator.h"
 
 class cField
 {
@@ -25,10 +24,10 @@ public:
 	void setpSouth(cField*);
 	void setpWest(cField*);
 
-	const cField* getpNorth() const;
-	const cField* getpEast() const;
-	const cField* getpSouth() const;
-	const cField* getpWest() const;
+	cField* getpNorth();
+	cField* getpEast();
+	cField* getpSouth();
+	cField* getpWest();
 
 	void adItem();
 

@@ -19,7 +19,7 @@ public:
 	~cArea(void);
 	//accessors
 	static	cArea* Instance();//FOR SINGLETONPETTERN: Method to control if there is already an Area
-	const cField* getFieldptr(int z,int sp) const;//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
+	cField* getFieldptr(int z,int sp);//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
 	void actAll();//start-button 
 };
 

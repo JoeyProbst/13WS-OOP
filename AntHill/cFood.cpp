@@ -11,7 +11,7 @@ cFood::~cFood(void)
 }
 
 //accessors
-void cFood::act()
+void cItem::act()
 {
 	std::cout<<"Ich bin Futter! Jammi"<<std::endl;
 }

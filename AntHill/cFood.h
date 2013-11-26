@@ -2,7 +2,7 @@
 #ifndef CFOOD_HEADER
 #define	CFOOD_HEADER
 
-#include "cItem.h"
+#include "citem.h"
 
 class cFood :
 	public cItem
@@ -10,8 +10,6 @@ class cFood :
 public:
 	cFood(void);
 	~cFood(void);
-	//accessors
-	void act() override;
 };
 
 #endif // !CFOOD_HEADER

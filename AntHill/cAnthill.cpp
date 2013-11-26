@@ -11,7 +11,7 @@ cAnthill::~cAnthill(void)
 }
 
 //accessors
-void cAnthill::act()
+void cItem::act()
 {
-	std::cout<<"Ich bin ein Ameisenhaufen!"<<std::endl;
+	std::cout<<"Ich bin ein Ameisenhügel!"<<std::endl;
 }
