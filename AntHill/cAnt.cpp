@@ -11,7 +11,7 @@ cAnt::~cAnt(void)
 }
 
 //accessors
-void act()
+void cAnt::act()
 {
 	std::cout<<"SIR. Ich bin eine Ameise!, SIR."<<std::endl; 
 }

@@ -63,8 +63,21 @@ cArea::~cArea(void)
 	}
 }
 
-cField* cArea::getFieldptr(int z,int sp)
+const cField* cArea::getFieldptr(int z,int sp) const
 {
 	
 	return Array_ofFieldptrs[z][sp];
+}
+
+void cArea::actAll()
+{
+	cCreator* factory=cCreator::Instance();
+
+	cItem* food=factory->create(1);
+	food->act();
+	cItem* anthill=factory->create(2);
+	anthill->act();
+	cItem* ant=factory->create(3);
+	ant->act();
+
 }

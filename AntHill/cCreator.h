@@ -4,6 +4,15 @@
 
 #include "cItem.h"
 
+#include "cFood.h"
+#include "cAnthill.h"
+#include "cAnt.h"
+
+
+#define ANT 3
+#define ANTHILL 2
+#define FOOD 1
+
 class cCreator
 {
 private:

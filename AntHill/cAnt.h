@@ -2,7 +2,7 @@
 #ifndef CANT_HEADER
 #define	CANT_HEADER
 
-#include "citem.h"
+#include "cItem.h"
 
 class cAnt :
 	public cItem
@@ -10,7 +10,8 @@ class cAnt :
 public:
 	cAnt(void);
 	~cAnt(void);
-	//virtual	void act();
+	//accessors
+	void act() override;
 };
 
 #endif // !CANT_HEADER
