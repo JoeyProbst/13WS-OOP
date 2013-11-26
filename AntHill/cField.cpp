@@ -11,7 +11,7 @@ cField::cField()
 	pSouth=NULL;
 	pWest=NULL;
 
-	//Joey: hier muss noch die Items liste initialisiert werden!
+	items;//Joey: hier muss noch die Items liste initialisiert werden!
 }
 
 
@@ -43,27 +43,27 @@ void cField::setpWest(cField* West)
 
 
 //get Functions
-cField* cField::getpNorth()
+const cField* cField::getpNorth() const
 {
 	return pNorth;
 }
 
-cField* cField::getpEast()
+const cField* cField::getpEast() const
 {
 	return pEast;
 }
 	
-cField* cField::getpSouth()
+const cField* cField::getpSouth() const
 {
 	return pSouth;
 }
 	
-cField* cField::getpWest()
+const cField* cField::getpWest() const
 {
 	return pWest;
 }
-
-/*void cField::adItem()
+/*
+void cField::adItem()
 {
 	items.push_back;
 }

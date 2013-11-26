@@ -2,7 +2,7 @@
 #ifndef CANTHILL_HEADER
 #define	CANTHILL_HEADER
 
-#include "citem.h"
+#include "cItem.h"
 
 class cAnthill :
 	public cItem
@@ -10,6 +10,8 @@ class cAnthill :
 public:
 	cAnthill(void);
 	~cAnthill(void);
+	//accessors
+	void act() override;
 };
 
 #endif // !CANTHILL_HEADER
