@@ -71,13 +71,15 @@ const cField* cArea::getFieldptr(int z,int sp) const
 
 void cArea::actAll()
 {
-	cCreator* factory=cCreator::Instance();
 
-	cItem* food=factory->create(1);
-	food->act();
-	cItem* anthill=factory->create(2);
-	anthill->act();
-	cItem* ant=factory->create(3);
-	ant->act();
+	for (int z=0; z< LINES ; z++)
+	{
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			//actItems();
+
+		}
+	}
+
 
 }

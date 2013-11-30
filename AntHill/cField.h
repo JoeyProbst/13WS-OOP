@@ -31,6 +31,7 @@ public:
 	const cField* getpWest() const;
 
 	void adItem();
+	void actItems();
 
 };
 

@@ -41,6 +41,17 @@ int main(int argc, char* argv[])
 	cArea* environment=cArea::Instance();
 	printEnvironment(environment);
 	wait();
+	
+
+	cCreator* factory=cCreator::Instance();
+
+	//
+	cItem* food=factory->create(1);	//factory method anfang
+	environment[0][0];
+	cItem* anthill=factory->create(2);	
+	cItem* ant=factory->create(3);
+											//ende
+
 	environment->actAll();
 	wait();
 	delete environment;

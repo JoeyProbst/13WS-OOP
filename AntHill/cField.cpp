@@ -19,6 +19,11 @@ cField::~cField(void)
 {
 }
 
+void cField::adItem(void)
+{
+}
+
+
 
 //set Functions
 void cField::setpNorth(cField* North )
