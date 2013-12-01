@@ -67,9 +67,8 @@ const cField* cField::getpWest() const
 {
 	return pWest;
 }
-/*
-void cField::adItem()
+
+void cField::adItem(cItem* Item)
 {
-	items.push_back;
+	items.push_back(Item);
 }
-*/

@@ -42,17 +42,29 @@ int main(int argc, char* argv[])
 	printEnvironment(environment);
 	wait();
 	
-
+	//Erzeugen einer Factory "Creator"
 	cCreator* factory=cCreator::Instance();
-
-	//
-	cItem* food=factory->create(1);	//factory method anfang
-	environment[0][0];
+	
+	//Aufruf der factory method durch zb Area, Anthill, etc. ANFANG 
+	cItem* food=factory->create(1);	
 	cItem* anthill=factory->create(2);	
 	cItem* ant=factory->create(3);
-											//ende
+	//Aufruf der factory method durch zb Area, Anthill, etc. ENDE
 
+	//Einfüllen der neuen Items in die Liste "items" ANFANG 
+	environment->getFieldptr(0,0)->adItem(food);// kann nicht verwendet werden da ihr Rückgabewert const ist um das Rumpfuschen nicht zu erlauben!
+	environment->Array_ofFieldptrs[0][0]->adItem(food);//Wir können nicht direkt auf das Array zugreifen, da es, um es zu schützen, ja private gesetzt ist! 
+		//D.h um es zu testen könnten wir die getFieldptr() Methode verwenden (wenn wir den Rückgabewert nicht mehr const setzen), 
+		//ABER später müssen wir sowieso das Einfüllen in die Listen dorthin verschieben,
+		//wo auch der Creator aufgerufen wird und in dieser ausführen. Was meinst?
+	
+	//Einfüllen der neuen Items in die Liste "items" ENDE
+
+	//Durchiterieren der Area mittels cArea::actAll(), 
 	environment->actAll();
+	//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
+	//um von jedem Item die Methode act() aufzurufen! 
+	
 	wait();
 	delete environment;
 	return 0;

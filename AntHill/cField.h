@@ -30,7 +30,7 @@ public:
 	const cField* getpSouth() const;
 	const cField* getpWest() const;
 
-	void adItem();
+	void adItem(cItem*);
 	void actItems();
 
 };

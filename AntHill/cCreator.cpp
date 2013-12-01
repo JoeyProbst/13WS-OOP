@@ -23,7 +23,7 @@ cCreator::~cCreator(void)
 //accessors
 cItem*	cCreator::create(int selector)
 {
-	switch (selector)
+	switch (selector)//schneller als if/else
 	{
 		case 1: 
 			return new cFood; 
