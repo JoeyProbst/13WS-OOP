@@ -44,19 +44,35 @@ int main(int argc, char* argv[])
 	
 	//Erzeugen einer Factory "Creator"
 	cCreator* factory=cCreator::Instance();
-	
+
 	//Aufruf der factory method durch zb Area, Anthill, etc. ANFANG 
-	cItem* food=factory->create(1);	
-	cItem* anthill=factory->create(2);	
-	cItem* ant=factory->create(3);
+		//cItem* food=factory->create(1);		Joey: hab ich in die Methode setFood() der Klasse Area verlegt. 	
+		//cItem* anthill=factory->create(2);	Joey: hab ich in die Methode setAntHill() der Klasse Area verlegt.
+		//cItem* ant=factory->create(3);		Joey: hab ich in die Methode setAnt() der Klasse AntHill verlegt.
 	//Aufruf der factory method durch zb Area, Anthill, etc. ENDE
 
 	//Einfüllen der neuen Items in die Liste "items" ANFANG 
-	environment->getFieldptr(0,0)->adItem(food);// kann nicht verwendet werden da ihr Rückgabewert const ist um das Rumpfuschen nicht zu erlauben!
-	environment->Array_ofFieldptrs[0][0]->adItem(food);//Wir können nicht direkt auf das Array zugreifen, da es, um es zu schützen, ja private gesetzt ist! 
+	//environment->getFieldptr(0,0)->adItem(food);// kann nicht verwendet werden da ihr Rückgabewert const ist um das Rumpfuschen nicht zu erlauben!
+	//environment->Array_ofFieldptrs[0][0]->adItem(food);//Wir können nicht direkt auf das Array zugreifen, da es, um es zu schützen, ja private gesetzt ist! 
 		//D.h um es zu testen könnten wir die getFieldptr() Methode verwenden (wenn wir den Rückgabewert nicht mehr const setzen), 
 		//ABER später müssen wir sowieso das Einfüllen in die Listen dorthin verschieben,
-		//wo auch der Creator aufgerufen wird und in dieser ausführen. Was meinst?
+		//wo auch der Creator aufgerufen wird und in dieser ausführen. Was meinst dazu?
+
+		//09.10.2013 Joey:	ich hab jetzt nur mal in der Array die Methoden setAntHill() und setFood() angelegt.
+		//					zudem hab ich in der AntHill Klasse die Methode setAnt() angelegt.
+		//					Das heist vom Ablauf her hab ich mir gedacht, dass wird in der main die Methode setAntHill() und setFood() aufrufen.
+		//					Die Methode setAnt() wird dann danach aufgerufen (die ja zu Anthill gehört).
+		//					In diesen Drei Methoden wird jeweils der Creator aufgerufen um die Dinge zu erzeugen und
+		//					die Methode adItem() des jeweiligen Fields aufgerufen in dessen Liste es (das Item) eingefügt werden soll.
+		//					dann wird die actAll() der Klasse Area aufgerufen, welche wiederum jedes Field durchiteriert um die Methode actItems() auf jedem Field aufzurufen,
+		//					die wiederum die Itemsliste eines jeden Fields durchiteriert um bei jedem darin befindlichen Item die Methode act() aufzurufen.
+		
+		//So - das wär so ungefähr der Ablauf, was meinst? Muss halt nur noch ausprogrammiert werden! :)					
+
+	environment->setAntHill(factory);
+	environment->setFood(factory);
+	//anthill->setAnt(factory); //kann erst aufgerufen werden wenn setAntHill ausprogrammiert
+	
 	
 	//Einfüllen der neuen Items in die Liste "items" ENDE
 

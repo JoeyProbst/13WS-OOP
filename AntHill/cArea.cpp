@@ -63,20 +63,34 @@ cArea::~cArea(void)
 	}
 }
 
+//---------set Methods:
+
+void setAntHill(cCreator* factory )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
+{
+	cItem* anthill=factory->create(2);
+}
+
+void setFood(cCreator* factory)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
+{
+	cItem* food=factory->create(1);
+}
+
+//---------get Methods:
+
 const cField* cArea::getFieldptr(int z,int sp) const
 {
 	
 	return Array_ofFieldptrs[z][sp];
 }
 
-void cArea::actAll()
+void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren und bei jedem Field dessen Methode actItems() aufrufen. 
 {
 
 	for (int z=0; z< LINES ; z++)
 	{
 		for (int sp= 0; sp< COLUMNS; sp++)
 		{
-			//actItems();
+			//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
 
 		}
 	}

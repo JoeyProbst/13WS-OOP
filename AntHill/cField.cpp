@@ -19,13 +19,8 @@ cField::~cField(void)
 {
 }
 
-void cField::adItem(void)
-{
-}
+//set Functions:
 
-
-
-//set Functions
 void cField::setpNorth(cField* North )
 {
 	pNorth=North;
@@ -46,8 +41,17 @@ void cField::setpWest(cField* West)
 	pWest=West;
 }
 
+void cField::adItem(cItem* Item)//Joey: Fügt Items zur Liste hinzu
+{
+	items.push_back(Item);
+}
 
-//get Functions
+void cField::actItems()//Joey: Diese Methode wird von der Methode actAll() der Klasse Area aufgerufen und soll ihrerseits die Liste des Fields durchiterieren und von jedem Item aus der Liste die Methode act() aufrufen.
+{
+
+}
+
+//get Functions:
 const cField* cField::getpNorth() const
 {
 	return pNorth;
@@ -68,7 +72,5 @@ const cField* cField::getpWest() const
 	return pWest;
 }
 
-void cField::adItem(cItem* Item)
-{
-	items.push_back(Item);
-}
+
+
