@@ -9,7 +9,7 @@ class cItem
 {
 public:
 	cItem(void);
-	~cItem(void);
+	~cItem(void);//Joey: muss noch virtuell gestaltet werden!
 	//accessors
 	virtual void act()=0;//Da eine abstrakte, virtuelle Methode theoretisch noch aufgerufen werden kann setze ich sie hier 0 um das zu verhindern!
 	

@@ -63,11 +63,27 @@ cArea::~cArea(void)
 	}
 }
 
+class cIndicesError
+{
+
+};
 //---------set Methods:
 
-void setAntHill(cCreator* factory )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
+void setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 {
-	cItem* anthill=factory->create(2);
+	cItem* anthill=factory->create(2);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen
+	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
+	{
+		
+	}
+	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
+	{
+
+	}
+	else
+	{
+		throw cIndicesError(); 
+	}
 }
 
 void setFood(cCreator* factory)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.

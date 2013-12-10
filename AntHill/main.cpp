@@ -68,19 +68,27 @@ int main(int argc, char* argv[])
 		//					die wiederum die Itemsliste eines jeden Fields durchiteriert um bei jedem darin befindlichen Item die Methode act() aufzurufen.
 		
 		//So - das wär so ungefähr der Ablauf, was meinst? Muss halt nur noch ausprogrammiert werden! :)					
+	try
+	{
+		int z=11;
+		int sp=11;
+		environment->setAntHill(factory, z, sp);
+		environment->setFood(factory);
+		//anthill->setAnt(factory); //kann erst aufgerufen werden wenn setAntHill ausprogrammiert
+	
+	
+		//Einfüllen der neuen Items in die Liste "items" ENDE
 
-	environment->setAntHill(factory);
-	environment->setFood(factory);
-	//anthill->setAnt(factory); //kann erst aufgerufen werden wenn setAntHill ausprogrammiert
-	
-	
-	//Einfüllen der neuen Items in die Liste "items" ENDE
-
-	//Durchiterieren der Area mittels cArea::actAll(), 
-	environment->actAll();
-	//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
-	//um von jedem Item die Methode act() aufzurufen! 
-	
+		//Durchiterieren der Area mittels cArea::actAll(), 
+		environment->actAll();
+		//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
+		//um von jedem Item die Methode act() aufzurufen! 
+	}
+	catch(cArea::cIndicesError())//Ich hab mich ein bisschen mit exception handling gespielt - hab aber keine Ahnung ob das so stimmt :)
+	{
+		std::cout<<"Die Index-Angabe fuer die Methode cArea::setAntHill() liegt NICHT innerhalb des erlaubten Wertebereichs ("<<LINES-1<<"x"<<COLUMNS-1<<"),"<<std::endl<<
+			"noch wurde die Methode angewiesen per Random den Ameisenhaufen auf einem Field zu platzieren!"<<std::endl;
+	}
 	wait();
 	delete environment;
 	return 0;
