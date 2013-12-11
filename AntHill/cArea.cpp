@@ -63,10 +63,10 @@ cArea::~cArea(void)
 	}
 }
 
-class cIndicesError
+/*class cIndicesError
 {
 
-};
+};*/
 //---------set Methods:
 
 void setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
@@ -80,10 +80,10 @@ void setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Amei
 	{
 
 	}
-	else
+	/*else
 	{
 		throw cIndicesError(); 
-	}
+	}*/
 }
 
 void setFood(cCreator* factory)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.

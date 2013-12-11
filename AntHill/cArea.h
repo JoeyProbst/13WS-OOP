@@ -17,7 +17,7 @@ protected:
 	cArea(void);//FOR SINGLETONPETTERN: Constructor has to be protected for a SingletonPattern
 public:
 	~cArea(void);
-	class cIndicesError;//exception class
+	//class cIndicesError;//exception class
 	//accessors
 	static	cArea* Instance();//FOR SINGLETONPETTERN: Method to control if there is already an Area
 	const cField* getFieldptr(int z,int sp) const;//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
