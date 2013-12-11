@@ -7,12 +7,15 @@
 class cAnthill :
 	public cItem
 {
+private:
+	int foodcounter;//Zeigt den Essensvorrat an! ist am Anfang mit einem Startkapital gefüllt
+	int antcounter;//Zeigt an wie viele Ameisen bestehen!
 public:
 	cAnthill(void);
 	~cAnthill(void);
 	//accessors
 	void act() override;
-	//void setAnt(cCreator*);//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
+	void setAnt(cCreator*);//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
 };
 
 #endif // !CANTHILL_HEADER

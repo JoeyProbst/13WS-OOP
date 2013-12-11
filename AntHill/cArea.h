@@ -6,6 +6,7 @@
 #define LINES 10
 
 #include "cField.h"
+#include <cstdlib>//für die random fkt der setAntHill()
 
 class cArea
 {
@@ -27,7 +28,7 @@ public:
 												//dann soll der Ameisenhaufen per random auf ein Field gesetzt werden, falls ein Index != DEN GRENZWERTEN mitgegeben wird,
 												//soll der Ameisenhaufen auf dieses Field positioniert werden,
 												//falls weder das eine noch das andere, gibts eine Fehlermeldung.
-	void setFood(cCreator*);//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
+	void setFood(cCreator*, int z, int sp);//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
 };
 
 #endif // !CAREA_HEADER

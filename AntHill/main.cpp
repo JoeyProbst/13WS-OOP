@@ -70,10 +70,13 @@ int main(int argc, char* argv[])
 		//So - das wär so ungefähr der Ablauf, was meinst? Muss halt nur noch ausprogrammiert werden! :)					
 	/*try
 	{*/
-		int z=11;
-		int sp=11;
-		environment->setAntHill(factory, z, sp);
-		environment->setFood(factory);
+		int z=0;
+		int sp=0;
+		environment->setAntHill(factory, z, sp);//TODO: Müssen noch ausschließen wenn bereits ein Ameisenhaufen auf dem Field vorhanden!!!
+												//TODO: Konsolenabfrage für selbstbestimmtes festlegen des Fields!!!
+		z++;
+		sp++;
+		environment->setFood(factory, z, sp);
 		//anthill->setAnt(factory); //kann erst aufgerufen werden wenn setAntHill ausprogrammiert
 	
 	

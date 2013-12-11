@@ -69,16 +69,16 @@ cArea::~cArea(void)
 };*/
 //---------set Methods:
 
-void setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
+void cArea::setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 {
 	cItem* anthill=factory->create(2);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
 	{
-		
+		Array_ofFieldptrs[rand()%LINES][rand()%COLUMNS]->adItem(anthill);
 	}
 	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
 	{
-
+		Array_ofFieldptrs[z][sp]->adItem(anthill);
 	}
 	/*else
 	{
@@ -86,9 +86,22 @@ void setAntHill(cCreator* factory, int z, int sp )//Joey: Initialisiert den Amei
 	}*/
 }
 
-void setFood(cCreator* factory)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
+void cArea::setFood(cCreator* factory, int z, int sp)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
 {
 	cItem* food=factory->create(1);
+	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
+	{
+		Array_ofFieldptrs[rand()%LINES][rand()%COLUMNS]->adItem(food);
+	}
+	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
+	{
+		Array_ofFieldptrs[z][sp]->adItem(food);
+	}
+	/*else
+	{
+		throw cIndicesError(); 
+	}*/
+
 }
 
 //---------get Methods:
@@ -106,8 +119,7 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 	{
 		for (int sp= 0; sp< COLUMNS; sp++)
 		{
-			//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
-
+			Array_ofFieldptrs[z][sp]->actItems();//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
 		}
 	}
 
