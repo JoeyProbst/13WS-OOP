@@ -48,9 +48,9 @@ void cField::adItem(cItem* Item)//Joey: Fügt Items zur Liste hinzu
 
 void cField::actItems()//Joey: Diese Methode wird von der Methode actAll() der Klasse Area aufgerufen und soll ihrerseits die Liste des Fields durchiterieren und von jedem Item aus der Liste die Methode act() aufrufen.
 {
-	for (std::list<cItem*>::iterator it=items.begin() ; it != items.end(); ++it)
+	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
 	{
-		it*->act();
+		(*listItemsIterator)->act();//ICH HAB KEINE AHNUNG WAS ICH DA TUE - ABER ER LÄSST ES ZU :)
 	}
 }
 
