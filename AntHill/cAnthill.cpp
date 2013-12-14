@@ -24,6 +24,7 @@ void cAnthill::setAnt(cCreator* factory)//Joey: Diese Methode ruft den Creator a
 	if (antcounter==0 && foodcounter==100)//erste Ameise wird geboren!
 	{
 		cItem* ant=factory->create(3);
+		antcounter++;
 	}
 
 	if (!(foodcounter/antcounter<5))//solange noch mehr als 5% Futter im Bau vorhanden, werden Ameisen generiert
