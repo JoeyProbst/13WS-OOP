@@ -4,7 +4,7 @@
 
 #include "cItem.h"//Basisklassen immer inkludieren
 
-class cCreator;//Forward Declaration
+//class cCreator;//Forward Declaration
 
 class cAnthill :
 	public cItem
