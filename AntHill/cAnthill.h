@@ -2,9 +2,9 @@
 #ifndef CANTHILL_HEADER
 #define	CANTHILL_HEADER
 
-#include "cItem.h"
+#include "cItem.h"//Basisklassen immer inkludieren
 
-class cCreator;
+class cCreator;//Forward Declaration
 
 class cAnthill :
 	public cItem
@@ -17,7 +17,7 @@ public:
 	~cAnthill(void);
 	//accessors
 	void act();
-	void setAnt(cCreator*);//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
+	void setAnt();//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
 };
 
 #endif // !CANTHILL_HEADER
