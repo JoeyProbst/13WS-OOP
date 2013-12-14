@@ -50,7 +50,7 @@ void cField::actItems()//Joey: Diese Methode wird von der Methode actAll() der K
 {
 	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
 	{
-		(*listItemsIterator)->act();//ICH HAB KEINE AHNUNG WAS ICH DA TUE - ABER ER LÄSST ES ZU :)
+		(*listItemsIterator)->act();//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
 	}
 }
 
