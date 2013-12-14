@@ -69,7 +69,7 @@ cArea::~cArea(void)
 };*/
 //---------set Methods:
 
-void cArea::setAntHill(int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
+cItem* cArea::setAntHill(int z, int sp )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 {
 	cItem* anthill=cCreator::Instance()->create(2);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
@@ -84,6 +84,7 @@ void cArea::setAntHill(int z, int sp )//Joey: Initialisiert den Ameisenhaufen au
 	{
 		throw cIndicesError(); 
 	}*/
+	return anthill;
 }
 
 void cArea::setFood(int z, int sp)//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
@@ -124,4 +125,10 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 	}
 
 
+}
+
+
+int cArea::getEnvironment_TTL()
+{
+	Anthill->
 }

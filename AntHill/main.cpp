@@ -83,7 +83,13 @@ int main(int argc, char* argv[])
 		//Einfüllen der neuen Items in die Liste "items" ENDE
 
 		//Durchiterieren der Area mittels cArea::actAll(), 
+		while (true)
+		{
+
 		environment->actAll();
+		
+		}
+		
 		//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
 		//um von jedem Item die Methode act() aufzurufen! 
 	/*}
