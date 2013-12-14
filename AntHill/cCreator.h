@@ -2,7 +2,6 @@
 #ifndef CCREATOR_HEADER
 #define CCREATOR_HEADER
 
-#include "cItem.h"
 
 #include "cFood.h"
 #include "cAnthill.h"

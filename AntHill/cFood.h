@@ -2,10 +2,9 @@
 #ifndef CFOOD_HEADER
 #define	CFOOD_HEADER
 
+#include <iostream>
 #include "cItem.h"
-
-class cFood :
-	public cItem
+class cFood : public cItem
 {
 public:
 	cFood(void);

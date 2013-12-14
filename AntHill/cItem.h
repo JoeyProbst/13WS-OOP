@@ -3,7 +3,6 @@
 #define CITEM_HEADER
 
 #include <iostream>
-#include "cCreator.h"
 
 class cItem
 {

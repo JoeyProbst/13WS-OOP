@@ -1,5 +1,5 @@
 #include "cAnthill.h"
-
+#include "cCreator.h"
 
 cAnthill::cAnthill(void)
 {
@@ -16,7 +16,7 @@ cAnthill::~cAnthill(void)
 void cAnthill::act()
 {
 	std::cout<<"Ich bin ein Ameisenhaufen!"<<std::endl;
-	setAnt();
+	setAnt(cCreator::Instance());
 }
 
 void cAnthill::setAnt(cCreator* factory)//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
