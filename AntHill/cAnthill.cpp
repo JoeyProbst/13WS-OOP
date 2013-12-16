@@ -32,3 +32,13 @@ void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise
 		cItem* ant=cCreator::Instance()->create(3);
 	}
 }
+
+int cAnthill::getfoodcounter()
+{
+
+}
+
+int cAnthill::getantcounter()
+{
+
+}

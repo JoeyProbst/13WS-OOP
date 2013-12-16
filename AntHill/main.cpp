@@ -70,6 +70,8 @@ int main(int argc, char* argv[])
 		//So - das wär so ungefähr der Ablauf, was meinst? Muss halt nur noch ausprogrammiert werden! :)					
 	/*try
 	{*/
+		//
+		//16.11.2013 Joey: setAntHill() und setFood() müssen in den Konstruktor verschoben werden
 		int z=0;
 		int sp=0;
 		environment->setAntHill(z, sp);//TODO: Müssen noch ausschließen wenn bereits ein Ameisenhaufen auf dem Field vorhanden!!!
@@ -83,11 +85,10 @@ int main(int argc, char* argv[])
 		//Einfüllen der neuen Items in die Liste "items" ENDE
 
 		//Durchiterieren der Area mittels cArea::actAll(), 
-		while (true)
+		while (environment->getEnvironment_FOODamount() !=0 && environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb der Environment und im Bau aus ist! 
 		{
-
-		environment->actAll();
-		
+			environment->actAll();
+			wait();
 		}
 		
 		//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird

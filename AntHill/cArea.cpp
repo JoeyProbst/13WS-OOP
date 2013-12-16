@@ -128,7 +128,17 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 }
 
 
-int cArea::getEnvironment_TTL()
+int cArea::getEnvironment_ANTamount()//liefert die Anzahl der Ameisen innerhalb der Environment; dieser Wert ist im Anthill zu finden
 {
-	Anthill->
+
+}
+
+int cArea::getEnvironment_FOODamount()//Teil der ABBRUCHBEDINGUNG; gibt den Wert des Futters innerhalb des Environment ABER exklusive Anthill zurück
+{
+	
+}
+
+int cArea::getHill_FOODamount()//Teil der ABBRUCHBEDINGUNG; gibt nur den Wert des Futters innerhalb des Anthills zurück
+{
+	Anthill->//16.12.2013 Joey: da Anthill ja eine cItem ist kann ich nicht auf die Methoden von cAnthill zugreifen - was machen wir da? 
 }

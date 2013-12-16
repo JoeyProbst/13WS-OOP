@@ -30,10 +30,66 @@ public:
 												//soll der Ameisenhaufen auf dieses Field positioniert werden,
 												//falls weder das eine noch das andere, gibts eine Fehlermeldung.
 	void setFood(int z, int sp);//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
-	int getEnvironment_TTL();//liefert die Abbruchbedingungen für die Environment
+	int getEnvironment_ANTamount();//liefert die Anzahl der Ameisen innerhalb der Environment; dieser Wert ist im Anthill zu finden
+	int getEnvironment_FOODamount();//Teil der Abbruchbedingung; gibt den Wert des Futters innerhalb des Environment ABER exklusive Anthill zurück
+	int getHill_FOODamount();//Teil der Abbruchbedingung; gibt nur den Wert des Futters innerhalb des Anthills zurück
 };
 
 #endif // !CAREA_HEADER
 
+/* Visualisierung der Environment:
 
+Round: 3
 
+	 000 001 002 003 004 005 006 007 008 009 010 011 012 013
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+001	|   |   |   |   |   |   |   | F |   |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+002	|   |   |   | F |   |   |   |   |   |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+003	|   |   |   |   |   |   |   |   |   |   |   | F |   |   |	
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+004	|   |   |   |   |   |   | F |   |   |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+005	|   | F |   |   |   |   |   |   |   | * | * | * | A |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+006	|   |   |   |   |   |   |   |   |   | * |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+007	|   |   |   |   | F |   | H | * |   | * |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+008	|   |   |   |   |   |   |   | * | * | * |   |   | F |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+009	|   |   |   | F |   |   |   |   |   |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+010	|   |   |   |   |   |   |   |   | F |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+011	|   |   |   |   | F |   |   |   |   |   |   |   |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+012	|   |   |   |   |   |   |   |   |   |   |   | F |   |   |
+	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+
+Legende: A...Ant; *... Pheromone; H...Anthill; F...Food; B...Barrier;*/
+
+/*
+Anzahl der Futterplätze entspricht 10% der Felder: ((LINES*COLUMNS)*100)/10;
+Auf jedem Futterplatz können zwischen 3 und 30 Stück Futter liegen;
+Nach jeder "Visualisierung der Environment" kann man Anweisungen durchführen:
+- mit "get" bekommt man Informationen: 
+	"get z sp" liefert einem alle Infos über das Feld mit Zeilennr. z und Spaltennr. sp
+	"get ttl" liefert einem wie viel Essen im Ameisenhaufen liegt und wie viele Ameisen gerade leben
+- mit "?" bekommt man Hilfe:
+	"?" liefert die komplette Anweisungsliste
+	"get ?" liefert alle Anweisungen die Informationen erfragen
+	"set ?" liefert alle Anweisungen die Einstellungen verstellen
+- mit "set" verstellt man Einstellungen:
+	"set ttl-" Fragt einen, auf wie viel man das Futter und die Ameisen reduzieren möchte
+	"set ttl+" Fragt einen, auf wie viel man das Futter und die Ameisen erhöhen möchte
+	"set z sp" fragt einen was (Ameise, Futter, oder Barriere) man auf das Feld mit Zeilennr. z und Spaltennr. sp setzen möchte
+- mit "kill" löscht man Items:
+	"kill ant" fragt einen nach den Koordinaten der Ameise welche man töten möchte
+	"kill food" fragt einen nach den Koordinaten des Futters welches man auflösen möchte
+	"kill barrier" fragt einen nach den Koordinaten der Barriere welche man zerstören möchte
+	"kill pheromons" fragt einen nach den Koordinaten der Pheromone welche man löschen möchte
+- mit "undo" springt man wieder aus einer Anweisung
+- mit einem einfachen Enter leitet man die nächste Runde ein! 
+*/
