@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="cAnt" Collapsed="true">
+  <Class Name="cAnt">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAARAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>cAnt.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cAnthill" Collapsed="true">
+  <Class Name="cAnthill">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAAAQAAAAAAACAgAIAABAABAAAAAAAEAAAA=</HashCode>
       <FileName>cAnthill.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cArea" Collapsed="true">
-    <Position X="7.5" Y="0.75" Width="1.5" />
+  <Class Name="cArea">
+    <Position X="6.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IABEABAAAAAAAAAAACAAAAIEAAAAAoCgQAAAAQAAAAA=</HashCode>
       <FileName>cArea.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cCreator" Collapsed="true">
-    <Position X="9.25" Y="0.75" Width="1.5" />
+  <Class Name="cCreator">
+    <Position X="10.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAhAAAAAAAA=</HashCode>
       <FileName>cCreator.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cField" Collapsed="true">
-    <Position X="7.5" Y="2" Width="1.5" />
+  <Class Name="cField">
+    <Position X="8.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAQAAQBABAIEgAACAEQAAQAAAAAAAAAAQEQQA=</HashCode>
       <FileName>cField.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cFood" Collapsed="true">
+  <Class Name="cFood">
     <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

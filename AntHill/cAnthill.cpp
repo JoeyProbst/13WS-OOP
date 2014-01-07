@@ -35,10 +35,10 @@ void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise
 
 int cAnthill::getfoodcounter()
 {
-
+	return foodcounter;
 }
 
 int cAnthill::getantcounter()
 {
-
+	return antcounter;
 }

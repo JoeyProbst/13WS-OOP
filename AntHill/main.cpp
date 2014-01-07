@@ -72,20 +72,20 @@ int main(int argc, char* argv[])
 	{*/
 		//
 		//16.11.2013 Joey: setAntHill() und setFood() müssen in den Konstruktor verschoben werden
-		int z=0;
-		int sp=0;
-		environment->setAntHill(z, sp);//TODO: Müssen noch ausschließen wenn bereits ein Ameisenhaufen auf dem Field vorhanden!!!
-												//TODO: Konsolenabfrage für selbstbestimmtes festlegen des Fields!!!
-		z++;
-		sp++;
-		environment->setFood(z, sp);
+		//int z=0;
+		//int sp=0;
+		////cArea::Anthill = (cAnthill*) environment->setAntHill(z, sp);//TODO: Müssen noch ausschließen wenn bereits ein Ameisenhaufen auf dem Field vorhanden!!!
+		//								//TODO: Konsolenabfrage für selbstbestimmtes festlegen des Fields!!!
+		//z++;
+		//sp++;
+		//environment->setFood(z, sp);
 		//anthill->setAnt(factory); //kann erst aufgerufen werden wenn setAntHill ausprogrammiert
 	
 	
 		//Einfüllen der neuen Items in die Liste "items" ENDE
 
 		//Durchiterieren der Area mittels cArea::actAll(), 
-		while (environment->getEnvironment_FOODamount() !=0 && environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb der Environment und im Bau aus ist! 
+	while (environment->getEnvironment_FOODamount() !=0 && environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb der Environment und im Bau aus ist! 
 		{
 			environment->actAll();
 			wait();
