@@ -1,6 +1,8 @@
 #include "cField.h"
 //#include <list>
 #include <iostream>
+#include <typeinfo>
+#include "cAnthill.h"
 using namespace std;
 
 cField::cField()
@@ -54,6 +56,16 @@ void cField::actItems()//Joey: Diese Methode wird von der Methode actAll() der K
 	}
 }
 
+void cField::remItem(cItem* Item) //Löscht das Item aus der Liste
+{
+	
+			items.remove (Item);
+
+}
+
+
+
+
 //get Functions:
 const cField* cField::getpNorth() const
 {
@@ -75,5 +87,19 @@ const cField* cField::getpWest() const
 	return pWest;
 }
 
+cItem* cField::getfoodstati()
+{
+	cItem* Food=NULL;
 
+	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+	{
+		if((*listItemsIterator)->typ==1)
+		{
+			Food=(*listItemsIterator);
+			items.remove(*listItemsIterator);
+			return Food;
+		}
+	}
+	return Food;
+}
 

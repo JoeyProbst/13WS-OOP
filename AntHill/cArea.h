@@ -39,6 +39,7 @@ public:
 	cField* getAnthillPosition();
 
 	cCreator* factory;
+	void redAntcounter();
 };
 
 #endif // !CAREA_HEADER

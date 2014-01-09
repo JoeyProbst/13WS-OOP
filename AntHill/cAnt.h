@@ -16,8 +16,10 @@ private:
 	int TTL;
 	bool Status;
 	std::list<cField*>carrymehomelist;
-	cFood* Fund;
+	cItem* Fund;
 	cField* ActualPosition;
+	cField* Birthplace;
+	cField* Whatsnext();
 public:
 	//cAnt(void);//Joey: Ich versuche den Konstruktor mal so umzuschreiben, dass die Ameise beim Entstehen ihre momentane Lage mitgegeben bekommt!
 	cAnt(cField* ActualPosition);

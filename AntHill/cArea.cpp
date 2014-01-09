@@ -194,3 +194,8 @@ cField* cArea::getAnthillPosition()
 {
 	return AnthillPosition;
 }
+
+void cArea::redAntcounter()
+{
+	Anthill->redantcounter();
+}

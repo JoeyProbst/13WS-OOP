@@ -32,6 +32,8 @@ public:
 
 	void adItem(cItem*);
 	void actItems();
+	void remItem(cItem*);
+	cItem* getfoodstati();
 
 };
 

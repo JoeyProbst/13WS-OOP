@@ -22,6 +22,7 @@ public:
 	void setAnt();//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_oFieldptrs auf das Field des AntHill.
 	int getfoodcounter();
 	int getantcounter();
+	void redantcounter();
 };
 
 #endif // !CANTHILL_HEADER

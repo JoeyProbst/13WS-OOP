@@ -46,3 +46,8 @@ int cAnthill::getantcounter()
 {
 	return antcounter;
 }
+
+void cAnthill::redantcounter()
+{
+	antcounter--;
+}

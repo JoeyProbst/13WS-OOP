@@ -2,34 +2,53 @@
 #include "cArea.h"
 #include "cItem.h"
 
+#include <typeinfo>
+
+
 cAnt::cAnt(cField* position):ActualPosition(position)
 {
+	Fund=0;
 	Status = true; //true = Futtersuche/ false = Way Home
 	ActualPosition->adItem(this);
+	carrymehomelist.push_front(ActualPosition);
 }
 
 
 cAnt::~cAnt(void)
 {
+ActualPosition->remItem(this);
+//redAntcounter;//TODO: KILL AUSPROGRAMMIEREN!!!	
 }
 
 //accessors
 void cAnt::act()
 {
 	//std::cout<<"SIR. Ich bin eine Ameise!, SIR."<<std::endl; 
-	if(TTL==0 || Lunchbox==0)
-	{
-	//kill	
-	}
+	//if(TTL==0 || Lunchbox==0)
+	//{
+	////kill
+	//	delete this;
+
+	//}
 	
+	if(Status) //Futtersuche
+	{
+		Fund=ActualPosition->getfoodstati();
+
+		if(Fund!=0)
+		Status=0;
+	}
 	if(Status)
 	{
-//Futtersuche
-ActualPosition
+		//Futter=333; Pheromon= >0 && <101; Nichts= 0; Anthill=222;
+		ActualPosition = Whatsnext();
+		carrymehomelist.push_back(ActualPosition);
 	}
-	else{
-//Weg heim
-
+	else //Weg heim
+	{
+		ActualPosition->remItem(this);
+		ActualPosition= carrymehomelist.back();
+		carrymehomelist.pop_back();
 	}
 
 
@@ -59,3 +78,13 @@ ActualPosition
 								//Random nach LROU 
  
 //
+
+	
+	cField*	cAnt::Whatsnext()
+	{
+		//Futter=333; Pheromon= >0 && <101; Nichts= 0; Anthill=222;
+		ActualPosition->getpNorth
+		if(typeid().name ==typeid(cFood).name)
+		ActualPosition->getpNorth
+
+	}
