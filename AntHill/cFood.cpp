@@ -1,7 +1,6 @@
 #include "cFood.h"
 
-
-cFood::cFood(void)
+cFood::cFood()
 {
 }
 

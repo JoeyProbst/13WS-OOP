@@ -80,16 +80,34 @@ cArea::~cArea(void)
 {
 
 };*/
+
+void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren und bei jedem Field dessen Methode actItems() aufrufen. 
+{
+
+	for (int z=0; z< LINES ; z++)
+	{
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			Array_ofFieldptrs[z][sp]->actItems();//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
+		}
+	}
+
+
+}
+
 //---------set Methods:
 
 
 cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 {
-	cItem* anthill=cCreator::Instance()->create(2);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen
+	cItem* anthill;
+
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
 	{
 		xhill = rand()%LINES;
 		yhill = rand()%COLUMNS;
+
+		anthill=cCreator::Instance()->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
 
 		Array_ofFieldptrs[xhill][yhill]->adItem(anthill);
 
@@ -97,6 +115,11 @@ cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initia
 	}
 	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
 	{
+		xhill=z;
+		yhill=sp;
+
+		anthill=cCreator::Instance()->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
+
 		Array_ofFieldptrs[z][sp]->adItem(anthill);
 	}
 	/*else
@@ -108,22 +131,30 @@ cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initia
 
 void cArea::setFood(int z, int sp, int & xhill, int & yhill )//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
 {
-	cItem* food=cCreator::Instance()->create(1);
+	cItem* food;
 	FOODamount++;
+
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird food per Random auf ein Field platziert.
 	{
 		int spalte = rand()%LINES;
 		int zeile = rand()%LINES;
 
-		while(zeile == xhill && spalte == yhill ){
+		while(zeile == xhill && spalte == yhill )
+		{
 		zeile =rand()%LINES;
 		spalte = rand()%COLUMNS;
 		}
 		
+		food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
+
 		Array_ofFieldptrs[rand()%LINES][rand()%COLUMNS]->adItem(food);
 	}
 	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
 	{
+		//TODO: Warnung falls das Field des Anthill ausgewählt worden ist, sollte noch eingebaut werden!
+
+		food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
+
 		Array_ofFieldptrs[z][sp]->adItem(food);
 	}
 	/*else
@@ -141,19 +172,6 @@ const cField* cArea::getFieldptr(int z,int sp) const
 	return Array_ofFieldptrs[z][sp];
 }
 
-void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren und bei jedem Field dessen Methode actItems() aufrufen. 
-{
-
-	for (int z=0; z< LINES ; z++)
-	{
-		for (int sp= 0; sp< COLUMNS; sp++)
-		{
-			Array_ofFieldptrs[z][sp]->actItems();//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
-		}
-	}
-
-
-}
 
 //
 //int cArea::getEnvironment_ANTamount()//liefert die Anzahl der Ameisen innerhalb der Environment; dieser Wert ist im Anthill zu finden

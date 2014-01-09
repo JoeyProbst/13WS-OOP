@@ -21,18 +21,18 @@ cCreator::~cCreator(void)
 }
 
 //accessors
-cItem*	cCreator::create(int selector)
+cItem*	cCreator::create(int selector, cField* position)
 {
 	switch (selector)//schneller als if/else
 	{
 		case 1: 
-			return new cFood; 
+			return new cFood(); 
 			break;
 		case 2:
-			return new cAnthill; 
+			return new cAnthill(position); 
 			break;
 		case 3:
-			return new cAnt; 
+			return new cAnt(position); 
 			break;
 	default: 
 		return 0;

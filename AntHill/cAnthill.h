@@ -3,6 +3,7 @@
 #define	CANTHILL_HEADER
 
 #include "cItem.h"//Basisklassen immer inkludieren
+class cField;
 
 //class cCreator;//Forward Declaration
 
@@ -12,8 +13,9 @@ class cAnthill :
 private:
 	int foodcounter;//Zeigt den Essensvorrat an! ist am Anfang mit einem Startkapital gefüllt
 	int antcounter;//Zeigt an wie viele Ameisen bestehen!//Sterbende Ameise muss Info über ableben an Anthill zurückgeben
+	cField* Position;
 public:
-	cAnthill(void);
+	cAnthill(cField* position);
 	~cAnthill(void);
 	//accessors
 	void act();

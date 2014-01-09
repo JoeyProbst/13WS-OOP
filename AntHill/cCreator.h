@@ -23,7 +23,7 @@ public:
 	~cCreator(void);
 	//accessors
 	static cCreator* Instance();//needed for SingletonPattern
-	cItem* create(int selector);//Methode to create Anthills, Food, Ants, etc. ; in the selector integer is the information what should be created
+	cItem* create(int selector, cField* position);//Methode to create Anthills, Food, Ants, etc. ; in the selector integer is the information what should be created; the position defines the position :)
 };
 
 #endif // !CCREATOR_HEADER

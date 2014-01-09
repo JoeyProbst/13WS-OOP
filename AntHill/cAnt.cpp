@@ -2,10 +2,10 @@
 #include "cArea.h"
 #include "cItem.h"
 
-cAnt::cAnt(void)
+cAnt::cAnt(cField* position):ActualPosition(position)
 {
 	Status = true; //true = Futtersuche/ false = Way Home
-	ActualPosition=getAnthillPosition();
+	ActualPosition->adItem(this);
 }
 
 

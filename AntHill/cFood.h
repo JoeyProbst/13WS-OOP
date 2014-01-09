@@ -4,10 +4,12 @@
 
 #include <iostream>
 #include "cItem.h"
+
+
 class cFood : public cItem
 {
 public:
-	cFood(void);
+	cFood();
 	~cFood(void);
 	//accessors
 	void act() override;

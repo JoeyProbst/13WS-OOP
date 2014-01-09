@@ -1,7 +1,8 @@
 #include "cAnthill.h"
 #include "cCreator.h"
+#include "cField.h"
 
-cAnthill::cAnthill(void)
+cAnthill::cAnthill(cField* position):Position(position)
 {
 	foodcounter=100;//Startkapital an Essen
 	antcounter=0;//noch keine Ameisen am Anfang
@@ -21,16 +22,19 @@ void cAnthill::act()
 
 void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
 {
+	cItem* ant;
+
 	if (antcounter==0 && foodcounter==100)//erste Ameise wird geboren!
 	{
-		cItem* ant=cCreator::Instance()->create(3);
+		ant=cCreator::Instance()->create(3, Position);
 		antcounter++;
 	}
 
 	if (!(foodcounter/antcounter<5))//solange noch mehr als 5% Futter im Bau vorhanden, werden Ameisen generiert
 	{
-		cItem* ant=cCreator::Instance()->create(3);
+		ant=cCreator::Instance()->create(3, Position);
 	}
+
 }
 
 int cAnthill::getfoodcounter()

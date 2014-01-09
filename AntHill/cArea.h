@@ -15,8 +15,8 @@ private:
 	cArea(const cArea&); //Standard Copy-Constructor eingebaut um den SingletonPattern abzusichern und die Lücke durch den Standard Copy-Constructor, den C++ per default erstellt, zu schließen
 	cField* Array_ofFieldptrs[LINES][COLUMNS]; //Joey: Ich denke die beste Variante ist die eines Arrays von Zeigern auf Fields 
 	static cArea* _instance;//FOR SINGLETONPETTERN: is NULL if there is no Area; is the Pointer to the Area if Area is already created
-	cAnthill* Anthill;//Pointer auf AntHill
-	cField* AnthillPosition;
+	cAnthill* Anthill;//Pointer auf AntHill um Abbruchbedingung ohne durchiterieren zu ermöglichen
+	cField* AnthillPosition;//Wird dem Anthill mitgegeben, damit dieser den Ameisen ihre Startposition mitgeben kann
 	int FOODamount;
 protected:
 	cArea(void);//FOR SINGLETONPETTERN: Constructor has to be protected for a SingletonPattern
@@ -43,35 +43,53 @@ public:
 
 #endif // !CAREA_HEADER
 
+/*
+Ausprogrammieren der Ausgabe:
+Ausgabe und Menü in jeweils eigene Methoden der Area (eventuell beides in späterer Folge in eine eigene Ausgabe-Klasse):
+Jede Ausgabe wird 5Sekunden angezeigt!
+Ausgabe:
+//erste zeile
+std:cout<<"/t "<<
+
+#include <cstdlib>
+#include <windows.h>
+system("cls");
+Sleep(1000);//in millisek
+
+Menü:
+
+
+/*
+
 /* Visualisierung der Environment:
 
 Round: 3
 
 	 000 001 002 003 004 005 006 007 008 009 010 011 012 013
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-001	|   |   |   |   |   |   |   | F |   |   |   |   |   |   |
+001	|   |   |   |   |   |   |   | F6|   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-002	|   |   |   | F |   |   |   |   |   |   |   |   |   |   |
+002	|   |   |   | F3|   |   |   |   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-003	|   |   |   |   |   |   |   |   |   |   |   | F |   |   |	
+003	|   |   |   |   |   |   |   |   |   |   |   | F8|   |   |	
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-004	|   |   |   |   |   |   | F |   |   |   |   |   |   |   |
+004	|   |   |   |   |   |   | F7|   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-005	|   | F |   |   |   |   |   |   |   | * | * | * | A |   |
+005	|   | F7|   |   |   |   |   |   |   | * | * | * |3A9|   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 006	|   |   |   |   |   |   |   |   |   | * |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-007	|   |   |   |   | F |   | H | * |   | * |   |   |   |   |
+007	|   |   |   |   | F5|   | H | * |   | * |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-008	|   |   |   |   |   |   |   | * | * | * |   |   | F |   |
+008	|   |   |   |   |   |   |   | * | * | * |   |   | F3|   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-009	|   |   |   | F |   |   |   |   |   |   |   |   |   |   |
+009	|   |   |   | F9|   |   |   |   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-010	|   |   |   |   |   |   |   |   | F |   |   |   |   |   |
+010	|   |   |   |   |   |   |   |   | F8|   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-011	|   |   |   |   | F |   |   |   |   |   |   |   |   |   |
+011	|   |   |   |   | F6|   |   |   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-012	|   |   |   |   |   |   |   |   |   |   |   | F |   |   |
+012	|   |   |   |   |   |   |   |   |   |   |   | F5|   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 
 Legende: A...Ant; *... Pheromone; H...Anthill; F...Food; B...Barrier;*/
