@@ -2,10 +2,14 @@
 #include "cCreator.h"
 #include "cField.h"
 
-cAnthill::cAnthill(cField* position):Position(position)
+cAnthill::cAnthill(cField* position):Position(position),typ(2),foodcounter(50)/*Startkapital an Essen*/,antcounter(0)/*noch keine Ameisen am Anfang*/
 {
-	foodcounter=100;//Startkapital an Essen
-	antcounter=0;//noch keine Ameisen am Anfang
+	Position->adItem(this);
+	//ÜBERLEGUNG//Joey: Eine Scheife die für das im foodcounter als Startkapital veranschlagte Essen, cFood in die Liste des Feldes, auf dem der Ameisenhügel steht, legt!
+	for (int i = 0; i <= antcounter; i++)
+	{
+		cCreator::Instance()->create(1,Position);
+	}
 }
 
 

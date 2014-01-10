@@ -21,12 +21,12 @@ cCreator::~cCreator(void)
 }
 
 //accessors
-cItem*	cCreator::create(int selector, cField* position)
+cItem*	cCreator::create(int selector, cField* position)//1=cFood, 2=cAnthill, 3=cAnt, 4=cPheromone
 {
 	switch (selector)//schneller als if/else
 	{
 		case 1: 
-			return new cFood(); 
+			return new cFood(position); 
 			break;
 		case 2:
 			return new cAnthill(position); 
@@ -34,6 +34,8 @@ cItem*	cCreator::create(int selector, cField* position)
 		case 3:
 			return new cAnt(position); 
 			break;
+		case 4:
+			return new cPheromone(position);
 	default: 
 		return 0;
 		break;

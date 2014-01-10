@@ -33,7 +33,8 @@ public:
 	void adItem(cItem*);
 	void actItems();
 	void remItem(cItem*);
-	cItem* getfoodstati();
+	int getTypamount(int typ);//Joey: Man gibt den Typ von Item an und als Rückgabewert erhält man die Anzahl dieses Itemtyps auf dem jeweiligen Feld
+	cItem* getFOODifTHEREis();
 
 };
 

@@ -6,6 +6,7 @@
 #include "cFood.h"
 #include "cAnthill.h"
 #include "cAnt.h"
+#include "cPheromone.h"
 
 
 #define ANT 3

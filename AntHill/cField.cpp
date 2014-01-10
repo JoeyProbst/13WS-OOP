@@ -87,19 +87,124 @@ const cField* cField::getpWest() const
 	return pWest;
 }
 
-cItem* cField::getfoodstati()
+cItem* cField::getFOODifTHEREis()
 {
 	cItem* Food=NULL;
 
 	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
-	{
-		if((*listItemsIterator)->typ==1)
-		{
-			Food=(*listItemsIterator);
-			items.remove(*listItemsIterator);
-			return Food;
-		}
-	}
-	return Food;
+			{
+				if((*listItemsIterator)->typ==2)
+				{
+					Food=(*listItemsIterator);
+					items.remove(*listItemsIterator);
+					return Food;
+				}
+			}
 }
+
+int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem Feld: TYPNR: 1=Food; 2=Anthill; 3=Ant; 4=Pheromon
+{
+	int counter=0;
+
+	switch (typ)
+	{
+		case 2://Anthill
+			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+			{
+				if((*listItemsIterator)->typ==2)
+				{
+					
+					return 1;
+				}
+			}
+			return 0;
+			break;
+		case 1://Food
+			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+			{
+				if((*listItemsIterator)->typ==1)
+				{
+					counter++;
+				}
+			}
+			return counter;
+			break;
+		case 3://Ant
+			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+			{
+				if((*listItemsIterator)->typ==3)
+				{
+					counter++;
+				}
+			}
+			return counter;
+			break;
+		case 4://Pheromone
+			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+			{
+				if((*listItemsIterator)->typ==4)
+				{
+					counter++;
+				}
+			}
+			return counter;
+			break;
+	}
+	return 999;//Falscher Parameter!//hier wäre eine Möglichkeit Exceptionhandling zu üben!
+}
+
+
+//cItem* cField::getFieldInfo(int typ)// 1=Food; 2=Anthill; 3=Ant; 4=Pheromon
+//{
+//	cItem* Item=NULL;
+//
+//	switch (typ)
+//	{
+//		case 2://Anthill
+//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+//			{
+//				if((*listItemsIterator)->typ==2)
+//				{
+//					Item=(*listItemsIterator);
+//					items.remove(*listItemsIterator);
+//					return Item;
+//				}
+//			}
+//			return Item;
+//		case 1://Food
+//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+//			{
+//				if((*listItemsIterator)->typ==1)
+//				{
+//					Item=(*listItemsIterator);
+//					items.remove(*listItemsIterator);
+//					return Item;
+//				}
+//			}
+//			return Item;
+//		case 3://Ant
+//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+//			{
+//				if((*listItemsIterator)->typ==3)
+//				{
+//					Item=(*listItemsIterator);
+//					items.remove(*listItemsIterator);
+//					return Item;
+//				}
+//			}
+//			return Item;
+//		case 4://Pheromone
+//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+//			{
+//				if((*listItemsIterator)->typ==4)
+//				{
+//					Item=(*listItemsIterator);
+//					items.remove(*listItemsIterator);
+//					return Item;
+//				}
+//			}
+//			return Item;
+//	}
+//	return Item;
+//}
 

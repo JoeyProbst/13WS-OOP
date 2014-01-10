@@ -58,7 +58,7 @@ cArea::cArea(void)
 	int xhill =0;
 	int yhill=0;
 
-	cArea::Anthill = (cAnthill*) setAntHill(z, sp,xhill,yhill);
+	Anthill = (cAnthill*) setAntHill(z, sp,xhill,yhill);
 	// zum testen nur einmal food! für später mit random schleife verteilen!
 	setFood(z, sp,xhill,yhill);
 }
@@ -107,9 +107,9 @@ cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initia
 		xhill = rand()%LINES;
 		yhill = rand()%COLUMNS;
 
-		anthill=cCreator::Instance()->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
+		anthill=factory->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
 
-		Array_ofFieldptrs[xhill][yhill]->adItem(anthill);
+		//Array_ofFieldptrs[xhill][yhill]->adItem(anthill);//Joey: Das Einfügen in die Liste habe ich in den Constructor des Foods verlegt!
 
 		AnthillPosition= Array_ofFieldptrs[xhill][yhill];
 	}
@@ -118,9 +118,9 @@ cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initia
 		xhill=z;
 		yhill=sp;
 
-		anthill=cCreator::Instance()->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
+		anthill=factory->create(2, Array_ofFieldptrs[xhill][yhill]);//Joey: Der Creator wird aufgerufen um einen Ameisenhaufen zu erzeugen, dabei wird dem Creator das Field auf dem der Anthill abgelegt wird, mitgegeben, damit dieser diese Info dem Construktor des Anthill geben kann	
 
-		Array_ofFieldptrs[z][sp]->adItem(anthill);
+		//Array_ofFieldptrs[z][sp]->adItem(anthill);//Joey: Das Einfügen in die Liste habe ich in den Constructor des Foods verlegt!
 	}
 	/*else
 	{
@@ -136,26 +136,26 @@ void cArea::setFood(int z, int sp, int & xhill, int & yhill )//Joey: Initialisie
 
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird food per Random auf ein Field platziert.
 	{
-		int spalte = rand()%LINES;
-		int zeile = rand()%LINES;
+		int random_sp = rand()%LINES;
+		int random_z = rand()%LINES;
 
-		while(zeile == xhill && spalte == yhill )
+		while(random_z == xhill && random_sp == yhill )
 		{
-		zeile =rand()%LINES;
-		spalte = rand()%COLUMNS;
+		random_z =rand()%LINES;
+		random_sp = rand()%COLUMNS;
 		}
 		
-		food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
-
-		Array_ofFieldptrs[rand()%LINES][rand()%COLUMNS]->adItem(food);
+		//food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
+		factory->create(1,Array_ofFieldptrs[random_z][random_sp]);//Joey: Das Einfügen in die Liste habe ich in den Constructor des Foods verlegt!
+		//Array_ofFieldptrs[rand()%LINES][rand()%COLUMNS]->adItem(food);
 	}
 	else if (z < LINES && sp < COLUMNS)//Joey: Da die Indizes einen Wert aufweisen der innerhalb des gültigen Wertebereichs liegt wird der Ameisenhaufen dort platziert
 	{
 		//TODO: Warnung falls das Field des Anthill ausgewählt worden ist, sollte noch eingebaut werden!
 
-		food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
-
-		Array_ofFieldptrs[z][sp]->adItem(food);
+		//food=cCreator::Instance()->create(1,Array_ofFieldptrs[z][sp]);
+		factory->create(1,Array_ofFieldptrs[z][sp]);//Joey: Das Einfügen in die Liste habe ich in den Constructor des Foods verlegt!
+		//Array_ofFieldptrs[z][sp]->adItem(food);
 	}
 	/*else
 	{

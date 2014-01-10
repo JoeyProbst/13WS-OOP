@@ -12,13 +12,13 @@ class cAnt :
 	public cItem
 {
 private:
-	int Lunchbox;
+	int typ;
+	int Lunchbox;//Joey: Der Umgang mit der Lunchbox ist noch nicht zu ende gedacht!!!
 	int TTL;
 	bool Status;
 	std::list<cField*>carrymehomelist;
 	cItem* Fund;
 	cField* ActualPosition;
-	cField* Birthplace;
 	cField* Whatsnext();
 public:
 	//cAnt(void);//Joey: Ich versuche den Konstruktor mal so umzuschreiben, dass die Ameise beim Entstehen ihre momentane Lage mitgegeben bekommt!

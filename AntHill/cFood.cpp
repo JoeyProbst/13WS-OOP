@@ -1,7 +1,9 @@
 #include "cFood.h"
+#include "cField.h"
 
-cFood::cFood()
+cFood::cFood(cField* position):typ(1),Position(position)
 {
+	Position->adItem(this);
 }
 
 
