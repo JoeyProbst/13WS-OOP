@@ -1,17 +1,16 @@
 #include "cAnt.h"
 #include "cArea.h"
 #include "cItem.h"
-
 #include <typeinfo>
 
 
-cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL((LINES+COLUMNS+(LINES+COLUMNS)/2)*3),Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
+cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL((LINES+COLUMNS+(LINES+COLUMNS)/2)*3)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
 {
 	Fund=0;
 	Status = true; //true = Futtersuche/ false = Way Home
 	ActualPosition->adItem(this);
 	carrymehomelist.push_front(ActualPosition);
-	Lunchbox=100;
+//	Lunchbox=100;
 	
 }
 
@@ -31,10 +30,12 @@ Fund=NULL;
 //accessors
 void cAnt::act()
 {
-	phNorth=0; //Pheromonstatus im Norden, wenn true dann Pheromon vorhanden wenn false dann keines
-	phEast=0;
-	phSouth=0;
-	phWest=0;
+	//phNorth=0; //Pheromonstatus im Norden, wenn true dann Pheromon vorhanden wenn false dann keines
+	//phEast=0;
+	//phSouth=0;
+	//phWest=0;
+	int	pheromonIntensity=0;
+	int lastdirection=0;
 
 
 	//std::cout<<"SIR. Ich bin eine Ameise!, SIR."<<std::endl; 
@@ -44,13 +45,13 @@ void cAnt::act()
 		//wenn Lebensstatus oder Proviant aufgebraucht 
 			//kill und Futter an aktuelles Feld abgeben und ein neues cFood entsteht für die gefallene Ameise sonst
 		//Proviantstatus -- und Lebensstatus --
-	if(TTL==0 || Lunchbox==0)//kill! Für Ameise aus ItemListe des aktuellen Fields herauszulöschen, eventuell transportiertes Futter an aktuelles Feld abzugeben und ein neues cFood für die gefallene Ameise entstehen zu lassen  SIEHE DESTRUCTOR
+	if(TTL==0)// || Lunchbox==0)//kill! Für Ameise aus ItemListe des aktuellen Fields herauszulöschen, eventuell transportiertes Futter an aktuelles Feld abzugeben und ein neues cFood für die gefallene Ameise entstehen zu lassen  SIEHE DESTRUCTOR
 	{
 		delete this;
 	}
 	else //THE SHOW MUST GO ON! Proviantstatus -- und Lebensstatus --
 	{
-		Lunchbox--;//Joey: Der Umgang mit der Lunchbox ist noch nicht zu ende gedacht!!!
+		//Lunchbox--;//Joey: Der Umgang mit der Lunchbox ist noch nicht zu ende gedacht!!!
 			TTL--;
 	}
 
@@ -77,14 +78,33 @@ void cAnt::act()
 			}
 			else//Was ist sonst um mich herum
 			{
-//Suche im norden
-				if(!ActualPosition->getpNorth.getTypamount(2))//Ist im Norden der Ameisenhügel? - Nope, dann
+				for (int i = 1; i < 5; i++)//1=North, 2=East, 3=South, 4=West
 				{
-					if(!ActualPosition->getpNorth.getTypamount(1))//Ist dort Futter? - Nope, dann
+					
+					if(carrymehomelist.end==ActualPosition->directioniter(i))//Waren wir hier gerade schon? - Yes, dann
 					{
-						if(!ActualPosition->getpNorth.getTypamount(4))//Ist dort Pheromon? - Nope, dann
-						{
+						lastdirection=i;
+					}
+					
+				}
 
+//Suche im norden
+						if(!ActualPosition->getpNorth.getTypamount(2))//Ist im Norden der Ameisenhügel? - Nope, dann
+						{
+							if(ActualPosition->getpNorth.getTypamount(1))//Ist dort Futter? - Ja, dann
+							{   
+								ActualPosition->remItem(this);
+								ActualPosition = ActualPosition->getpNorth;
+								carrymehomelist.push_back(ActualPosition);
+								ActualPosition->adItem(this);
+
+							}
+								if(pheromonIntensity=ActualPosition->getpNorth.getTypamount(4))//Ist dort Pheromon? - Nope, dann
+								{
+
+								}
+
+						}
 							
 //Suche im osten
 							if(!ActualPosition->getpEast.getTypamount(2))//Ist im osten der Ameisenhügel? - Nope, dann
@@ -463,7 +483,7 @@ void cAnt::act()
 		//if(typeid().name ==typeid(cFood).name)
 		//ActualPosition->getpNorth
 
-		if(!phNorth && !phEast && !phSouth && !phWest)
+	/*	if(!phNorth && !phEast && !phSouth && !phWest)
 		{	
 			return randway();
 		}else if(phNorth && !phEast && !phSouth && !phWest)
@@ -482,11 +502,11 @@ void cAnt::act()
 		{
 			return ActualPosition->getpWest;
 		}
-	}
+	}*/
 
 
-	cField* cAnt::randway() // gibt eine Zufallsrichtung zurück! muss noch ausprogrammiert werden!
-	{
+	//cField* cAnt::randway() // gibt eine Zufallsrichtung zurück! muss noch ausprogrammiert werden!
+	//{
 
 
-	}
+	//}

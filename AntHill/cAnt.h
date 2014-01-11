@@ -13,12 +13,12 @@ class cAnt :
 {
 private:
 	int typ;
-	int Lunchbox;//Joey: Der Umgang mit der Lunchbox ist noch nicht zu ende gedacht!!!
+	//int Lunchbox;//Joey: Der Umgang mit der Lunchbox ist noch nicht zu ende gedacht!!!
 	int TTL;
-	bool phNorth;
+	/*bool phNorth;
 	bool phEast;
 	bool phSouth;
-	bool phWest;
+	bool phWest;*/
 
 	bool Status;
 	std::list<cField*>carrymehomelist;

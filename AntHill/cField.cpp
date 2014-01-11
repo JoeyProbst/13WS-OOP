@@ -153,6 +153,25 @@ int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem F
 	return 999;//Falscher Parameter!//hier wäre eine Möglichkeit Exceptionhandling zu üben!
 }
 
+/*const*/ cField* cField::directioniter(int direction)
+{
+	switch (direction)
+	{
+		case 1:
+			return this->getpNorth();
+			break;
+		case 2:
+			return this->getpEast();
+			break;
+		case 3:
+			return this->getpSouth();
+			break;
+		case 4:
+			return this->getpWest();
+			break;
+			return NULL;
+	}
+}
 
 //cItem* cField::getFieldInfo(int typ)// 1=Food; 2=Anthill; 3=Ant; 4=Pheromon
 //{
