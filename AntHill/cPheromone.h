@@ -13,10 +13,11 @@ private:
 	int intensity;//Joey: zeigt die Intensität des Pheromons an!
 	int typ;
 	cField* Position;
+	int roundBasedTurnIndicator;
 public:
 	cPheromone(cField* position);
 	~cPheromone(void);
-	void act();//Joey: zählt die Intensität des Pheromons hinunter!
+	void act(int roundIndicator);//Joey: zählt die Intensität des Pheromons hinunter!
 };
 
 #endif // !CPHEROMONE_HEADER

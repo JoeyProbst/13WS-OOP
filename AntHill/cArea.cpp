@@ -13,10 +13,10 @@ cArea* cArea::Instance()
 }
 
 //Constructor initializes the m x n Array of cField* (environment of our anthill simulation)
-cArea::cArea(void)
+cArea::cArea(void):round(0),FOODamount(0),AnthillPosition(NULL)
 {
-	FOODamount=0;
-	AnthillPosition=0;
+	//FOODamount=0;
+	//AnthillPosition=0;
 
 	for (int z=0; z< LINES ; z++)
 	{
@@ -58,7 +58,7 @@ cArea::cArea(void)
 	int xhill =0;
 	int yhill=0;
 
-	Anthill = (cAnthill*) setAntHill(z, sp,xhill,yhill);
+	Anthill = (cAnthill*) setAntHill(z, sp, xhill, yhill);
 	// zum testen nur einmal food! für später mit random schleife verteilen!
 	setFood(z, sp,xhill,yhill);
 }
@@ -83,12 +83,14 @@ cArea::~cArea(void)
 
 void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren und bei jedem Field dessen Methode actItems() aufrufen. 
 {
+	round++;//Rundenzähler wird bei jedem actAll() um eins erhöht
+	int roundIndicator=round%2;
 
 	for (int z=0; z< LINES ; z++)
 	{
 		for (int sp= 0; sp< COLUMNS; sp++)
 		{
-			Array_ofFieldptrs[z][sp]->actItems();//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
+			Array_ofFieldptrs[z][sp]->actItems(roundIndicator);//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
 		}
 	}
 
@@ -131,7 +133,7 @@ cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initia
 
 void cArea::setFood(int z, int sp, int & xhill, int & yhill )//Joey: Initialisiert das Essen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um Essen zu erzeugen und positioniert dann das Essen auf dem Array.
 {
-	cItem* food;
+	//cItem* food;
 	FOODamount++;
 
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird food per Random auf ein Field platziert.
@@ -166,7 +168,7 @@ void cArea::setFood(int z, int sp, int & xhill, int & yhill )//Joey: Initialisie
 
 //---------get Methods:
 
-const cField* cArea::getFieldptr(int z,int sp) const
+/*const*/ cField* cArea::getFieldptr(int z,int sp) /*const*/
 {
 	
 	return Array_ofFieldptrs[z][sp];
@@ -174,16 +176,16 @@ const cField* cArea::getFieldptr(int z,int sp) const
 
 
 //
-//int cArea::getEnvironment_ANTamount()//liefert die Anzahl der Ameisen innerhalb der Environment; dieser Wert ist im Anthill zu finden
+int cArea::getEnvironment_ANTamount()//Teil der ABBRUCHBEDINGUNG; liefert die Anzahl der Ameisen innerhalb der Environment; dieser Wert ist im Anthill zu finden
+{
+	return Anthill->getantcounter();
+}
+
+//int cArea::getEnvironment_FOODamount()// gibt den Wert des Futters innerhalb des Environment ABER exklusive Anthill zurück.
 //{
+//	return FOODamount;//Jedes Futter müsste die Area informieren, dass es noch da ist" (ObserverPattern lässt grüßen :) )
 //
 //}
-//
-int cArea::getEnvironment_FOODamount()//Teil der ABBRUCHBEDINGUNG; gibt den Wert des Futters innerhalb des Environment ABER exklusive Anthill zurück
-{
-	return FOODamount;
-
-}
 //
 int cArea::getHill_FOODamount()//Teil der ABBRUCHBEDINGUNG; gibt nur den Wert des Futters innerhalb des Anthills zurück
 {
@@ -195,7 +197,7 @@ cField* cArea::getAnthillPosition()
 	return AnthillPosition;
 }
 
-void cArea::redAntcounter()
-{
-	Anthill->redantcounter();
-}
+//void cArea::redAntcounter()//Falls das mit dem ObserverPattern nicht hinhaut!
+//{
+//	Anthill->redantcounter();
+//}

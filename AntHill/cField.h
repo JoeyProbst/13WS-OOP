@@ -25,18 +25,18 @@ public:
 	void setpSouth(cField*);
 	void setpWest(cField*);
 
-	/*const*/ cField* getpNorth(); //const;
-	/*const*/ cField* getpEast(); //const;
-	/*const*/ cField* getpSouth(); //const;
-	/*const*/ cField* getpWest(); //const;
+	/*const*/ cField* getpNorth() /*const*/;
+	/*const*/ cField* getpEast() /*const*/;
+	/*const*/ cField* getpSouth() /*const*/;
+	/*const*/ cField* getpWest() /*const*/;
 
 	void adItem(cItem*);
-	void actItems();
+	void actItems(int roundIndicator);
 	void remItem(cItem*);
 	int getTypamount(int typ);//Joey: Man gibt den Typ von Item an und als Rückgabewert erhält man die Anzahl dieses Itemtyps auf dem jeweiligen Feld
 	cItem* getFOODifTHEREis();
 	/*const*/ cField* directioniter(int direction);
-
+	//int getListSize();
 };
 
 #endif // !CFIELD_HEADER

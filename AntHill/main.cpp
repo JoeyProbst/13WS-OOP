@@ -27,7 +27,7 @@ void printEnvironment(cArea* environment)//Joey: Nur mal zum überprüfen! ACHTUNG
 	{	
 		for (int sp = 0; sp < COLUMNS; sp++)
 		{
-			const cField* p=environment->getFieldptr(z,sp);
+			/*const*/ cField* p=environment->getFieldptr(z,sp);
 			std::cout<<"["<<z<<"]["<<sp<<"] "<<p<<"	"<<p->getpNorth()<<" "<<p->getpEast()<<" "<<p->getpSouth()<<" "<<p->getpWest()<<std::endl;
 			//std::cout << p <<std::endl;
 		}		
@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
 		//Einfüllen der neuen Items in die Liste "items" ENDE
 
 		//Durchiterieren der Area mittels cArea::actAll(), 
-	while (environment->getEnvironment_FOODamount() !=0 && environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb der Environment und im Bau aus ist! 
+	while (/*HIER GEHÖRT DER ANTCOUNTER DES AMEISENHÜGELS ABGEFRAGT: environment->getEnvironment_ANTamount()  !=0 &&*/ environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 
 		{
 			environment->actAll();
 			wait();

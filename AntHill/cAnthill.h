@@ -15,12 +15,14 @@ private:
 	int antcounter;//Zeigt an wie viele Ameisen bestehen!//Sterbende Ameise muss Info über ableben an Anthill zurückgeben
 	cField* Position;
 	int typ;
+	int roundBasedTurnIndicator;
+	void check();//Überprüft ob Futter auf dem Feld des Ameisenhügels und verarbeitet dieses falls vorhanden
+	void setAnt();//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_oFieldptrs auf das Field des AntHill.
 public:
 	cAnthill(cField* position);
 	~cAnthill(void);
 	//accessors
-	void act();
-	void setAnt();//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_oFieldptrs auf das Field des AntHill.
+	void act(int roundIndicator);
 	int getfoodcounter();
 	int getantcounter();
 	void reduceAntcounter();//Methode um den Tod einer Ameise im Ameisenzähler des Ameisenhügels festzuhalten und gleichzeitig den EnvironmentFoodCounter um eines zu erhöhen (Da die tote Ameise ja zu neuem Futter wird)!

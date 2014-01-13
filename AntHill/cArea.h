@@ -18,6 +18,7 @@ private:
 	cAnthill* Anthill;//Pointer auf AntHill um Abbruchbedingung ohne durchiterieren zu ermöglichen
 	cField* AnthillPosition;//Wird dem Anthill mitgegeben, damit dieser den Ameisen ihre Startposition mitgeben kann
 	int FOODamount;
+	int round;//ACHTUNG: Noch NICHT Überlauf sicher!!!
 protected:
 	cArea(void);//FOR SINGLETONPETTERN: Constructor has to be protected for a SingletonPattern
 public:
@@ -25,7 +26,7 @@ public:
 	//class cIndicesError;//exception class
 	//accessors
 	static	cArea* Instance();//FOR SINGLETONPATTERN: Method to control if there is already an Area
-	const cField* getFieldptr(int z,int sp) const;//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
+	/*const*/ cField* getFieldptr(int z,int sp) /*const*/;//returns a pointer to a cField from the Array_ofFieldptrs through the index of the Fieldptr in the array
 	void actAll();//start-button
 	cItem* setAntHill(int z, int sp, int & xhill, int & yhill);	//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 												//setAntHill() bekommt den Creator übergeben und die Indexvariablen z und sp. Wenn dieser Index genau dem Grenzwert entspricht(also z==LINES, sp ==COLUMNS),
@@ -37,7 +38,7 @@ public:
 	int getEnvironment_FOODamount();//Teil der Abbruchbedingung; gibt den Wert des Futters innerhalb des Environment ABER exklusive Anthill zurück
 	int getHill_FOODamount();//Teil der Abbruchbedingung; gibt nur den Wert des Futters innerhalb des Anthills 
 	cField* getAnthillPosition();
-
+	int getRound();//Gibt die Rundenzahl zurück
 	cCreator* factory;
 	void redAntcounter();
 };

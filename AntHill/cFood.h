@@ -11,12 +11,13 @@ class cFood : public cItem
 private:
 	int typ;
 	cField* Position;
+	int roundBasedTurnIndicator;//Zeigt an ob das Item schon dran war
 	//AUSBAUFÄHIGE IDEE//int energy;//Joey: Jedes Food liefert 10 Energie. Mit dieser Energie wird der Proviant der Ameisen aufgefüllt. Gleichzeitig mit dem Auffüllen muss dieese Energie natürlich bei einem, bereits im Ameisenbau abgelegten, Food reduziert werden!  
 public:
 	cFood(cField* position);
 	~cFood(void);
 	//accessors
-	void act() override;
+	void act(int roundIndicator) override;
 };
 
 #endif // !CFOOD_HEADER

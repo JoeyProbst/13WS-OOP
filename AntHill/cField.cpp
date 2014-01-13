@@ -48,11 +48,11 @@ void cField::adItem(cItem* Item)//Joey: Fügt Items zur Liste hinzu
 	items.push_back(Item);
 }
 
-void cField::actItems()//Joey: Diese Methode wird von der Methode actAll() der Klasse Area aufgerufen und soll ihrerseits die Liste des Fields durchiterieren und von jedem Item aus der Liste die Methode act() aufrufen.
+void cField::actItems(int roundIndicator)//Joey: Diese Methode wird von der Methode actAll() der Klasse Area aufgerufen und soll ihrerseits die Liste des Fields durchiterieren und von jedem Item aus der Liste die Methode act() aufrufen.
 {
 	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
 	{
-		(*listItemsIterator)->act();//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
+		(*listItemsIterator)->act(roundIndicator);//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
 	}
 }
 
@@ -67,22 +67,22 @@ void cField::remItem(cItem* Item) //Löscht das Item aus der Liste
 
 
 //get Functions:
-const cField* cField::getpNorth() const
+/*const*/ cField* cField::getpNorth() /*const*/
 {
 	return pNorth;
 }
 
-const cField* cField::getpEast() const
+/*const*/ cField* cField::getpEast() /*const*/
 {
 	return pEast;
 }
 	
-const cField* cField::getpSouth() const
+/*const*/ cField* cField::getpSouth() /*const*/
 {
 	return pSouth;
 }
 	
-const cField* cField::getpWest() const
+/*const*/ cField* cField::getpWest() /*const*/
 {
 	return pWest;
 }
@@ -152,6 +152,11 @@ int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem F
 	}
 	return 999;//Falscher Parameter!//hier wäre eine Möglichkeit Exceptionhandling zu üben!
 }
+
+//int cField::getListSize()
+//{
+//	return items.size();
+//}
 
 /*const*/ cField* cField::directioniter(int direction)
 {
