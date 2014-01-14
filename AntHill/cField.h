@@ -17,6 +17,7 @@ private:
 	std::list<cItem*>items;//Beherbergt alle am normalen Rundenzyklus beteiligten Items
 	std::list<cItem*>deadObjects;//Beherbergt die zu löschenden Objekte
 	std::list<cItem*>newbornAnts;//In diese Liste werden zuerst alle neugeborenen Ameisen geladen um anschließend den ganzen ListenInhalt an die items Liste anzuhängen
+	std::list<cItem*>foodToAnthill;//Falls der Anthill auf dem Feld vorhanden, geben die Ameisen ihr Futter an den Anthill ab
 
 public:
 	cField();
@@ -42,7 +43,10 @@ public:
 	
 
 	void addNewborn(cItem* newAnt);//Fügt eine neue Ameise der newbornAnt Liste hinzu
-	void spliceNewbornToItemslist();//hängt die in newbornAnt enthaltenen Ameisen der items Liste an und cleared die newbornAnt Liste
+	void spliceNewbornToItemslist();//hängt die in newbornAnt enthaltenen Ameisen der items Liste an und cleared die newbornAnt Liste;
+
+	void addFoodToHillList(cItem*);//Methode um das Futter an die foodToHill Liste zu übergeben!
+	int clearFoodToHillList();
 
 
 	int getTypamount(int typ);//Joey: Man gibt den Typ von Item an und als Rückgabewert erhält man die Anzahl dieses Itemtyps auf dem jeweiligen Feld
@@ -50,6 +54,8 @@ public:
 
 	/*const*/ cField* directioniter(int direction);//Methode um die Nachbarfelder durchzuiterieren
 	//int getListSize();
+
+	int getSizeofList(int whichList);
 };
 
 #endif // !CFIELD_HEADER

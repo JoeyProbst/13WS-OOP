@@ -30,7 +30,7 @@ std::list<cItem*>::iterator cAnthill::act(int roundIndicator, std::list<cItem*>:
 
 	check();
 
-
+	return actualIterator;
 }
 
 void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise zu erzeugen und setzt diese dann in der Array_ofFieldptrs auf das Field des AntHill.
@@ -55,15 +55,19 @@ void cAnthill::check()//Überprüft ob Futter auf dem Feld des Ameisenhügels und v
 {
 	cItem* Food =NULL;
 
-	for(int i=Position->getTypamount(1); i>0;i--)
+	/*for(int i=Position->getTypamount(1); i>0;i--)
 	{
 		if((Food=Position->getFOODifTHEREis())!=NULL)
-		{
+		{*/
 			//delete Food;//!!!
 			//Position->remByIterator(actualIterator);
 			//Position->addDeadItem(Food);
-			foodcounter++;
-		}
+			//foodcounter++;
+		/*}
+	}*/
+	if (Position->getSizeofList(4)>0)
+	{
+		foodcounter +=Position->clearFoodToHillList();
 	}
 }
 

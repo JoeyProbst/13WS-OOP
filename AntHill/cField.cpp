@@ -222,3 +222,41 @@ void cField::spliceNewbornToItemslist()//hängt die in newbornAnt enthaltenen Ame
 {
 	items.splice(items.end(),newbornAnts);
 }
+
+void cField::addFoodToHillList(cItem* Food)
+{
+	foodToAnthill.push_back(Food);
+}
+
+int cField::getSizeofList(int whichList)//gibt die Größen der listen zurück
+{
+	switch(whichList)
+	{
+	case 1:
+		return items.size();
+		break;
+	case 2:
+		return deadObjects.size();
+		break;
+	case 3:
+		return newbornAnts.size();
+		break;
+	case 4:
+		return foodToAnthill.size();
+		break;
+}
+
+}
+	int cField::clearFoodToHillList()
+	{
+		int Foodcounter=0;
+
+		for (std::list<cItem*>::iterator i=foodToAnthill.begin(); i !=foodToAnthill.end(); ++i)
+		{
+			delete (*i);
+			(*i)=NULL;
+			Foodcounter++;
+		}
+		foodToAnthill.clear();
+		return Foodcounter;
+	}

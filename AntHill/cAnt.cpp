@@ -178,7 +178,7 @@ void cAnt::giveback()
 {
 				if (ActualPosition->getTypamount(2)==1)//Steht die Ameise schon auf dem Ameisenhügel?
 				{
-					ActualPosition->adItem(Fund);
+					ActualPosition->addFoodToHillList(Fund);
 					Fund=NULL;
 				}
 				else//Pheromon wird abgelegt!

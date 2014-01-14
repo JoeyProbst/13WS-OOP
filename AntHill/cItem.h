@@ -3,6 +3,7 @@
 #define CITEM_HEADER
 
 #include <iostream>
+#include <list>
 
 class cItem
 {
