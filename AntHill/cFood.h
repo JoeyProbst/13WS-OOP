@@ -17,7 +17,7 @@ public:
 	cFood(cField* position);
 	~cFood(void);
 	//accessors
-	void act(int roundIndicator) override;
+	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator) override;
 };
 
 #endif // !CFOOD_HEADER

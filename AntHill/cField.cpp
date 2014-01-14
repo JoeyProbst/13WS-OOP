@@ -14,6 +14,7 @@ cField::cField()
 	pWest=NULL;
 
 	items;//Joey: hier muss noch die Items liste initialisiert werden!
+	deadObjects;
 }
 
 
@@ -50,9 +51,23 @@ void cField::adItem(cItem* Item)//Joey: Fügt Items zur Liste hinzu
 
 void cField::actItems(int roundIndicator)//Joey: Diese Methode wird von der Methode actAll() der Klasse Area aufgerufen und soll ihrerseits die Liste des Fields durchiterieren und von jedem Item aus der Liste die Methode act() aufrufen.
 {
-	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
+	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); /*++listItemsIterator*/)
 	{
-		(*listItemsIterator)->act(roundIndicator);//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
+		std::list<cItem*>::iterator actualIterator =(*listItemsIterator)->act(roundIndicator, listItemsIterator);//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
+		if (actualIterator==listItemsIterator)
+		{
+			++listItemsIterator;
+		}
+		else
+		{
+			listItemsIterator=actualIterator;
+		}
+	}
+	clearDeadObjects();//deallociere alle toten Items und lösche die Liste der Toten Items
+
+	if (getTypamount(2)==1)//Liegt auf diesem Feld der Ameisenhügel?
+	{
+		spliceNewbornToItemslist();
 	}
 }
 
@@ -150,7 +165,7 @@ int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem F
 			return counter;
 			break;
 	}
-	return 999;//Falscher Parameter!//hier wäre eine Möglichkeit Exceptionhandling zu üben!
+	return 999;//Unpassender Parameterwert!//hier wäre eine Möglichkeit Exceptionhandling zu üben!
 }
 
 //int cField::getListSize()
@@ -178,57 +193,32 @@ int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem F
 	}
 }
 
-//cItem* cField::getFieldInfo(int typ)// 1=Food; 2=Anthill; 3=Ant; 4=Pheromon
-//{
-//	cItem* Item=NULL;
-//
-//	switch (typ)
-//	{
-//		case 2://Anthill
-//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
-//			{
-//				if((*listItemsIterator)->typ==2)
-//				{
-//					Item=(*listItemsIterator);
-//					items.remove(*listItemsIterator);
-//					return Item;
-//				}
-//			}
-//			return Item;
-//		case 1://Food
-//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
-//			{
-//				if((*listItemsIterator)->typ==1)
-//				{
-//					Item=(*listItemsIterator);
-//					items.remove(*listItemsIterator);
-//					return Item;
-//				}
-//			}
-//			return Item;
-//		case 3://Ant
-//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
-//			{
-//				if((*listItemsIterator)->typ==3)
-//				{
-//					Item=(*listItemsIterator);
-//					items.remove(*listItemsIterator);
-//					return Item;
-//				}
-//			}
-//			return Item;
-//		case 4://Pheromone
-//			for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
-//			{
-//				if((*listItemsIterator)->typ==4)
-//				{
-//					Item=(*listItemsIterator);
-//					items.remove(*listItemsIterator);
-//					return Item;
-//				}
-//			}
-//			return Item;
-//	}
-//	return Item;
-//}
+void cField::addDeadItem(cItem* item)//fügt ein zu löschendes Item der deadObject Liste hinzu!
+{
+	deadObjects.push_back(item);
+}
 
+void cField::clearDeadObjects()//deletet jedes Objekt der deadobjects Liste und leert sie anschließend
+{
+	for (std::list<cItem*>::iterator i=deadObjects.begin(); i !=deadObjects.end(); ++i)
+	{
+		delete (*i);
+		(*i)=NULL;
+	}
+	deadObjects.clear();
+}
+
+std::list<cItem*>::iterator cField::remByIterator(std::list<cItem*>::iterator actualIterator)//entfernt das Item mittels erase über den mitgegebenen Iterator und gibt den Iterator auf das nächste Feld zurück
+{
+	return items.erase(actualIterator);
+}
+
+void cField::addNewborn(cItem* newAnt)//Fügt eine neue Ameise der newbornAnt Liste hinzu
+{
+	newbornAnts.push_back(newAnt);		
+}
+
+void cField::spliceNewbornToItemslist()//hängt die in newbornAnt enthaltenen Ameisen der items Liste an und cleared die newbornAnt Liste
+{
+	items.splice(items.end(),newbornAnts);
+}

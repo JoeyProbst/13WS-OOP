@@ -12,7 +12,7 @@ cFood::~cFood(void)
 }
 
 //accessors
-void cFood::act(int roundIndicator)
+std::list<cItem*>::iterator cFood::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
 	std::cout<<"Ich bin Futter! Jammi"<<std::endl;
 }

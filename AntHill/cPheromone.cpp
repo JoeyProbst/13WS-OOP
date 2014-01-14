@@ -11,7 +11,7 @@ cPheromone::~cPheromone(void)
 	Position->remItem(this);
 }
 
-void cPheromone::act(int roundIndicator)//Joey: zählt die Intensität des Pheromons hinunter!
+std::list<cItem*>::iterator cPheromone::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)//Joey: zählt die Intensität des Pheromons hinunter!
 {
 	intensity--;
 	if(intensity==0)

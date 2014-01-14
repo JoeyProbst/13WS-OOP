@@ -17,7 +17,7 @@ private:
 public:
 	cPheromone(cField* position);
 	~cPheromone(void);
-	void act(int roundIndicator);//Joey: zählt die Intensität des Pheromons hinunter!
+	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator);//Joey: zählt die Intensität des Pheromons hinunter!
 };
 
 #endif // !CPHEROMONE_HEADER

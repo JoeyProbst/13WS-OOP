@@ -18,7 +18,7 @@ cAnthill::~cAnthill(void)
 }
 
 //accessors
-void cAnthill::act(int roundIndicator)
+std::list<cItem*>::iterator cAnthill::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
 	std::cout<<"Ich bin ein Ameisenhaufen!"<<std::endl;
 	check();
@@ -27,6 +27,8 @@ void cAnthill::act(int roundIndicator)
 	{
 		setAnt();
 	}
+
+	check();
 
 
 }
@@ -57,7 +59,9 @@ void cAnthill::check()//Überprüft ob Futter auf dem Feld des Ameisenhügels und v
 	{
 		if((Food=Position->getFOODifTHEREis())!=NULL)
 		{
-			delete Food;
+			//delete Food;//!!!
+			//Position->remByIterator(actualIterator);
+			//Position->addDeadItem(Food);
 			foodcounter++;
 		}
 	}

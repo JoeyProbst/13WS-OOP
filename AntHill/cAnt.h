@@ -26,9 +26,9 @@ private:
 	cItem* Fund;
 	cField* ActualPosition;
 	//cField* whatsNext();
-	void search();//Auf der Suche nach Futter
+	std::list<cItem*>::iterator search(std::list<cItem*>::iterator actualIterator);//Auf der Suche nach Futter
 	void take();//Futter aufnehmen
-	void gohome();//Mit dem Futter nach Hause gehen
+	std::list<cItem*>::iterator gohome(std::list<cItem*>::iterator actualIterator);//Mit dem Futter nach Hause gehen
 	void giveback();//Legt Pheromon ab oder das gefundene Futter falls am aktuellen Feld der Ameisenhügel liegt
 	//cField*	randway();
 	int compare(/*const*/ cField* choice, /*const*/ cField* current);
@@ -37,7 +37,7 @@ public:
 	cAnt(cField* ActualPosition);
 	~cAnt(void);
 	//accessors
-	void act(int roundIndicator) override;
+	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator) override;
 };
 
 #endif // !CANT_HEADER

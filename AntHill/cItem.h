@@ -13,7 +13,7 @@ public:
 	int roundBasedTurnIndicator;//Zeigt an ob das Item schon dran war
 	
 	//accessors
-	virtual void act(int roundIndicator)=0;//Da eine abstrakte, virtuelle Methode theoretisch noch aufgerufen werden kann setze ich sie hier 0 um das zu verhindern!
+	virtual std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator)=0;//Da eine abstrakte, virtuelle Methode theoretisch noch aufgerufen werden kann setze ich sie hier 0 um das zu verhindern!
 };
 
 #endif // !CITEM_HEADER
