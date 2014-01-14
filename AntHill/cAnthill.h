@@ -2,6 +2,7 @@
 #ifndef CANTHILL_HEADER
 #define	CANTHILL_HEADER
 
+#include "cObserver.h"
 #include "cItem.h"//Basisklassen immer inkludieren
 //#include <list>
 class cField;
@@ -9,7 +10,7 @@ class cField;
 //class cCreator;//Forward Declaration
 
 class cAnthill :
-	public cItem
+	public cItem, public cObserver
 {
 private:
 	int foodcounter;//Zeigt den Essensvorrat an! ist am Anfang mit einem Startkapital gefüllt
@@ -24,6 +25,7 @@ public:
 	~cAnthill(void);
 	//accessors
 	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator);
+	void update(cSubject*);
 	int getfoodcounter();
 	int getantcounter();
 	void reduceAntcounter();//Methode um den Tod einer Ameise im Ameisenzähler des Ameisenhügels festzuhalten und gleichzeitig den EnvironmentFoodCounter um eines zu erhöhen (Da die tote Ameise ja zu neuem Futter wird)!

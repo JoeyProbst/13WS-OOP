@@ -39,6 +39,7 @@ std::list<cItem*>::iterator cAnt::act(int roundIndicator, std::list<cItem*>::ite
 		{
 			//delete this;
 			ActualPosition->addDeadItem(this);
+			notify();//Observer wird über änderung informiert!
 			return ActualPosition->remByIterator(actualIterator);
 		}
 		else //THE SHOW MUST GO ON! Proviantstatus -- und Lebensstatus --
@@ -186,4 +187,9 @@ void cAnt::giveback()
 					cCreator* factory=cCreator::Instance();
 					factory->create(4, ActualPosition);
 				}
+}
+
+int cAnt::getTTL()
+{
+	return TTL;
 }

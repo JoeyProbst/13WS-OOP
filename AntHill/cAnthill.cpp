@@ -40,6 +40,7 @@ void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise
 	//if (antcounter==0 && foodcounter==100)//erste Ameise wird geboren! NUR IN ZUSAMMENHANG MIT LUNCHBOX SINNVOLL!
 	//{
 		ant=cCreator::Instance()->create(3, Position);
+		ant->attach(this);
 		antcounter++;
 		foodcounter--;
 	//}
@@ -80,6 +81,12 @@ int cAnthill::getantcounter()
 {
 	return antcounter;
 }
+
+void cAnthill::update(cSubject* sub)
+{
+	sub
+}
+
 
 //void cAnthill::redantcounter()
 //{

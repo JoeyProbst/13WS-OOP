@@ -4,12 +4,13 @@
 
 #include <list>
 #include "cItem.h"
+#include "cSubject.h"
 
 class cField;
 class cFood;
 
 class cAnt :
-	public cItem
+	public cItem//,public cSubject
 {
 private:
 	int typ;
@@ -34,10 +35,11 @@ private:
 	int compare(/*const*/ cField* choice, /*const*/ cField* current);
 public:
 	//cAnt(void);//Joey: Ich versuche den Konstruktor mal so umzuschreiben, dass die Ameise beim Entstehen ihre momentane Lage mitgegeben bekommt!
-	cAnt(cField* ActualPosition);
+	cAnt(cField* ActualPosition);//:cSubject(){};
 	~cAnt(void);
 	//accessors
 	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator) override;
+	int getTTL();
 };
 
 #endif // !CANT_HEADER
