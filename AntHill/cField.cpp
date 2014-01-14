@@ -115,6 +115,7 @@ cItem* cField::getFOODifTHEREis()
 					return Food;
 				}
 			}
+	//Perfekter platz für eine exception!!! Compiler sagt: Nicht alle Steuerelementpfade geben einen Wert zurück.
 }
 
 int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem Feld: TYPNR: 1=Food; 2=Anthill; 3=Ant; 4=Pheromon
@@ -189,8 +190,10 @@ int cField::getTypamount(int typ)// Joey: zählt die Items eines Typs auf einem F
 		case 4:
 			return this->getpWest();
 			break;
+		default:
 			return NULL;
 	}
+	//Perfekter platz für eine exception!!! Compiler sagt: Nicht alle Steuerelementpfade geben einen Wert zurück.
 }
 
 void cField::addDeadItem(cItem* item)//fügt ein zu löschendes Item der deadObject Liste hinzu!
@@ -244,8 +247,10 @@ int cField::getSizeofList(int whichList)//gibt die Größen der listen zurück
 	case 4:
 		return foodToAnthill.size();
 		break;
+	default:
+		return 0;
 }
-
+	//Perfekter platz für eine exception!!! Compiler sagt: Nicht alle Steuerelementpfade geben einen Wert zurück.
 }
 	int cField::clearFoodToHillList()
 	{

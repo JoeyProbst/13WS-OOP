@@ -40,7 +40,7 @@ public:
 	cField* getAnthillPosition();
 	int getRound();//Gibt die Rundenzahl zurück
 	cCreator* factory;
-	void redAntcounter();
+	int getAntcounter();
 };
 
 #endif // !CAREA_HEADER

@@ -84,7 +84,7 @@ int cAnthill::getantcounter()
 
 void cAnthill::update(cSubject* sub)
 {
-	sub
+	antcounter--;
 }
 
 

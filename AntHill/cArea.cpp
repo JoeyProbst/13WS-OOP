@@ -60,7 +60,10 @@ cArea::cArea(void):round(0),FOODamount(0),AnthillPosition(NULL)
 
 	Anthill = (cAnthill*) setAntHill(z, sp, xhill, yhill);
 	// zum testen nur einmal food! für später mit random schleife verteilen!
-	setFood(z, sp,xhill,yhill);
+	for (int i = 0; i < 1; i++)
+	{
+		setFood(z, sp,xhill,yhill);
+	}
 }
 
 
@@ -197,7 +200,13 @@ cField* cArea::getAnthillPosition()
 	return AnthillPosition;
 }
 
+int cArea::getRound()
+{
+	return round;
+}
+
 //void cArea::redAntcounter()//Falls das mit dem ObserverPattern nicht hinhaut!
 //{
 //	Anthill->redantcounter();
 //}
+

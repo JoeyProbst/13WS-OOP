@@ -85,11 +85,14 @@ int main(int argc, char* argv[])
 		//Einfüllen der neuen Items in die Liste "items" ENDE
 
 		//Durchiterieren der Area mittels cArea::actAll(), 
-	while (/*HIER GEHÖRT DER ANTCOUNTER DES AMEISENHÜGELS ABGEFRAGT: environment->getEnvironment_ANTamount()  !=0 &&*/ environment->getHill_FOODamount() !=0) //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 
+		do
 		{
+			std::cout<<"Runde: "<<environment->getRound()<<std::endl;
+			std::cout<<"Ameisen: "<<environment->getEnvironment_ANTamount()<<std::endl;
+			std::cout<<"Futter im Bau: "<<environment->getHill_FOODamount()<<std::endl;
 			environment->actAll();
 			wait();
-		}
+		}while (environment->getEnvironment_ANTamount()  >0 && environment->getHill_FOODamount() >0); //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 
 		
 		//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
 		//um von jedem Item die Methode act() aufzurufen! 

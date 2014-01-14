@@ -61,6 +61,7 @@ std::list<cItem*>::iterator cAnt::act(int roundIndicator, std::list<cItem*>::ite
 		roundBasedTurnIndicator=roundIndicator;
 		return newIterator;
 	}
+	//Perfekter platz für eine exception!!! Compiler sagt: Nicht alle Steuerelementpfade geben einen Wert zurück.
 }
 
 
@@ -189,7 +190,7 @@ void cAnt::giveback()
 				}
 }
 
-int cAnt::getTTL()
-{
-	return TTL;
-}
+//int cAnt::getTTL()
+//{
+//	return TTL;
+//}
