@@ -1,12 +1,16 @@
 #include "cAnt.h"
+#include "cPainter.h"
 #include "cArea.h"
+#include "cField.h"
+#include "cCreator.h"
 #include "cItem.h"
 #include <typeinfo>
 
 
-cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL((LINES+COLUMNS+(LINES+COLUMNS)/2)*3),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
+cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL(/*(LINES+COLUMNS+(LINES+COLUMNS)/2)*3*/15),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
 {
 	//Fund=0;
+	attach(cPainter::Instance());
 	state = true; //true = Futtersuche/ false = on my way home
 	ActualPosition->addNewborn(this);
 	carrymehomelist.push_front(ActualPosition);
@@ -68,12 +72,13 @@ std::list<cItem*>::iterator cAnt::act(int roundIndicator, std::list<cItem*>::ite
 std::list<cItem*>::iterator cAnt::search(std::list<cItem*>::iterator actualIterator)//Auf der Suche nach Futter
 {
 	/*const*/ cField* choice=NULL;
+	choice=ActualPosition->getpNorth();
 	std::list</*const*/ cField*>options;
 	options.push_front(choice);
 
-	choice=ActualPosition->getpNorth();
+	
 
-	for (int i = 2; i <= 4; i++)
+	for (int i = 2; i <= 4; i++)//Es werden immer zwei Himmelsrichtungen verglichen
 	{
 		/*const*/ cField* current=ActualPosition->directioniter(i);
 
@@ -116,6 +121,15 @@ int cAnt::compare(/*const*/ cField* choice, /*const*/ cField* current)
 	if (carrymehomelist.back()==current)//current entspricht dem letzten besuchten Feld
 	{
 		return 1;//current ist falsch
+	}
+
+	if (current==NULL)
+	{
+		return 1;//current enspricht einer Areagrenze!
+	}
+	if (choice==NULL)
+	{
+		return -1;//choice enspricht einer Areagrenze!
 	}
 
 	//Die Überprüfung auf den Ameisenhaufen würde ich sagen lassen wir weg: Das ist eher Zusatz - ohne funktionierts auch; wir müssen halt beim cAnt::take() dann überprüfen auf den Hügel

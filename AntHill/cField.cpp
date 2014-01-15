@@ -2,7 +2,11 @@
 //#include <list>
 #include <iostream>
 #include <typeinfo>
+#include "cCreator.h"
+#include "cItem.h"
 #include "cAnthill.h"
+
+
 using namespace std;
 
 cField::cField()

@@ -1,4 +1,8 @@
 #include "cArea.h"
+#include "cField.h"
+#include "cAnthill.h"
+#include "cCreator.h"
+
 //Variable to control creation of cArea!
 cArea* cArea::_instance=NULL;
 //Method to control the Variable above!
@@ -97,7 +101,14 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 		}
 	}
 
-
+	//der Painter wird informiert
+	for (int z=0; z< LINES ; z++)
+	{
+		for (int sp= 0; sp< COLUMNS; sp++)
+		{
+			Array_ofFieldptrs[z][sp]->notify();//das Notify eines jeden Fields wird aufgerufen
+		}
+	}
 }
 
 //---------set Methods:

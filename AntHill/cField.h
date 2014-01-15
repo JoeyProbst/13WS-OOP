@@ -3,10 +3,13 @@
 #define CFIELD_HEADER
 
 #include <list>
-#include "cItem.h"
-#include "cCreator.h"
+#include "cSubject.h"
 
-class cField
+class cCreator;
+class cItem;
+
+class cField : 
+	public cSubject
 {
 private:
 	cField* pNorth;

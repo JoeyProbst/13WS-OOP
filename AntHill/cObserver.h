@@ -1,4 +1,7 @@
-#pragma once
+//#pragma once
+#ifndef COBSERVER_HEADER
+#define COBSERVER_HEADER
+
 class cSubject;
 
 class cObserver
@@ -9,3 +12,4 @@ public:
 	virtual ~cObserver(void);
 };
 
+#endif // !COBSERVER_HEADER
