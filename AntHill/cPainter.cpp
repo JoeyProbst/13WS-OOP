@@ -167,4 +167,3 @@ Nach jeder "Visualisierung der Environment" kann man Anweisungen durchführen:
 - mit "undo" springt man wieder aus einer Anweisung
 - mit einem einfachen Enter leitet man die nächste Runde ein! 
 */
-*/
