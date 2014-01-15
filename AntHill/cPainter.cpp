@@ -1,5 +1,6 @@
 #include "cPainter.h"
 #include "cSubject.h"
+#include "cArea.h"
 #include "cField.h"
 #include <iostream>
 
@@ -14,7 +15,7 @@ cPainter* cPainter::Instance()
 	return _instance;
 }
 
-cPainter::cPainter(void)
+cPainter::cPainter(void):fieldcounter(0)
 {
 }
 
@@ -25,44 +26,61 @@ cPainter::~cPainter(void)
 
 void cPainter::update(cSubject* sub)
 {
+	if (sub->getSubjectTyp()==1)//Die Parameter für die Ameisensimulation werden upgedatet
+	{
+		round=(*(cArea*)sub).getRound();
+		lines=(*(cArea*)sub).getLines();
+		columns=(*(cArea*)sub).getColumns();
+		paintEnvironment();
+	}
+
 	 antcounter= 0;
 	 foodcounter= 0;
 	 anthill= 0;
 	 pheromonecounter= 0;
-
-	for (int i = 1; i <= 4; i++)
+	 fieldcounter++;
+	if (sub->getSubjectTyp()==2)//Die Felder updaten über ihren Status nach dem actAll()
 	{
-		int counter=0;
-
-		if(counter= (*(cField*)sub).getTypamount(i)>0)//1=Food; 2=Anthill; 3=Ant; 4=Pheromon
+		for (int i = 1; i <= 4; i++)
 		{
-			if (i==3)//Ameise
+			int counter=0;
+
+			if(counter= (*(cField*)sub).getTypamount(i)>0)//1=Food; 2=Anthill; 3=Ant; 4=Pheromon
 			{
-				antcounter=counter;
-			}
-			if (i==1)//Futter
-			{
-				foodcounter=counter;
-			}
-			if (i==2)//Ameisenhügel
-			{
-				anthill=counter;
-			}
-			if (i==4)//Pheromon
-			{
-				pheromonecounter=counter;
+				if (i==3)//Ameise
+				{
+					antcounter=counter;
+				}
+				if (i==1)//Futter
+				{
+					foodcounter=counter;
+				}
+				if (i==2)//Ameisenhügel
+				{
+					anthill=counter;
+				}
+				if (i==4)//Pheromon
+				{
+					pheromonecounter=counter;
+				}
 			}
 		}
 	}
-
-	paintEnvironment();
+	paintLivingEnvironment();
 }
 
 void cPainter::paintEnvironment()
 {
+	if (fieldcounter)
+	{
 
+	}
 }
 
+void cPainter::paintLivingEnvironment()
+{
+
+}
 /*
 	
 +-----------+

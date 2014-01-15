@@ -27,3 +27,8 @@ void cSubject::notify()
 		(*i)->update(this);
 	}
 }
+
+int cSubject::getSubjectTyp()
+{
+	return subjectTyp;
+}

@@ -221,3 +221,12 @@ int cArea::getRound()
 //	Anthill->redantcounter();
 //}
 
+int cArea::getLines()
+{
+	return LINES;
+}
+
+int cArea::getColumns()
+{
+	return COLUMNS;
+}

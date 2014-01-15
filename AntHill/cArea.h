@@ -45,6 +45,8 @@ public:
 	int getRound();//Gibt die Rundenzahl zurück
 	cCreator* factory;
 	int getAntcounter();
+	int getLines();//liefert die Zeilenlänge
+	int getColumns();//liefert die Spaltenlänge
 };
 
 #endif // !CAREA_HEADER

@@ -14,6 +14,12 @@ private:
 	int foodcounter;
 	int anthill;
 	int pheromonecounter;
+
+	int round;
+	int lines;
+	int columns;
+	int fieldcounter;
+
 protected:
 	cPainter(void);
 public:
@@ -21,6 +27,7 @@ public:
 	static cPainter* Instance();
 	void update(cSubject*);
 	void paintEnvironment();
+	void paintLivingEnvironment();
 };
 
 #endif // !CPAINTER_HEADER
