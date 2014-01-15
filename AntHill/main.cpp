@@ -40,6 +40,8 @@ void printEnvironment(cArea* environment)//Joey: Nur mal zum überprüfen! ACHTUNG
 
 int main(int argc, char* argv[])
 {
+	try{ //hier hab ich die exception hergenommen, einfach nur zu überprüfrn ob die main() funktioniert.
+
 	//Erzeugen eines Painters für die Ausgabe
 	cPainter* painter=cPainter::Instance();
 	//Erzeugen einer Factory "Creator"
@@ -69,5 +71,15 @@ int main(int argc, char* argv[])
 	}*/
 	wait();
 	delete environment;
+	
+	}
+	catch(...) //hier werden alle Fehler abgefangen deshalb (...)
+	{
+std::cerr<<"Fehler in der main!!"<<std::endl;
+	}
+
+
+
 	return 0;
+
 }
