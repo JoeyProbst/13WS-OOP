@@ -3,6 +3,7 @@
 #include "cArea.h"
 #include "cField.h"
 #include <iostream>
+#include <iomanip>
 
 cPainter* cPainter::_instance=0;//WARUM GEHT NULL NICHT?
 
@@ -15,7 +16,7 @@ cPainter* cPainter::Instance()
 	return _instance;
 }
 
-cPainter::cPainter(void):fieldcounter(0)
+cPainter::cPainter(void):fieldcounter(0),multiplier(0)
 {
 }
 
@@ -65,21 +66,154 @@ void cPainter::update(cSubject* sub)
 				}
 			}
 		}
+
+		paintLivingEnvironment();
 	}
-	paintLivingEnvironment();
+	
+	if (fieldcounter==(lines*columns))
+	{
+		fieldcounter=0;
+		multiplier=0;
+	}
 }
 
 void cPainter::paintEnvironment()
 {
-	if (fieldcounter)
-	{
-
-	}
+	paintLivingEnvironment();
 }
 
 void cPainter::paintLivingEnvironment()
 {
+		if(round==1)//Die Indize der Spalten werden vor dem zeichnen des ersten fields ausgegeben
+		{
+			paintIndexColumns();
+		}
+		if (fieldcounter==((columns*multiplier)+1))
+		{
+			paintHorizontalRaster();
+			paintIndexLines();
+			multiplier++;
+		}
+		paintInteriorField();
+		
+}
 
+void cPainter::paintIndexColumns()
+{
+	std::cout<<"	";
+	for (int i = 0; i < columns; i++)
+	{
+		std::cout<<" "<<std::setw(3)<<i;
+	}
+	std::cout<<std::endl;
+	
+}
+
+void cPainter::paintHorizontalRaster()
+{
+	std::cout<<"	";
+
+	for (int i = 0; i < columns; i++)
+	{
+		std::cout<<"+---";
+	}
+
+	std::cout<<"+"<<std::endl;
+}
+
+void cPainter::paintIndexLines()
+{
+	std::cout<<std::setw(3)<<indexLines++<<" ";
+}
+
+void cPainter::paintInteriorField()
+{
+	std::cout<<"|";
+	if (antcounter)//Es sind Ameisen auf dem Feld!
+	{
+		if (antcounter<10)
+		{
+			std::cout<<antcounter;
+		}
+		else//Falls über neun Ameisen auf einem Feld, dann wird nur noch # ausgegeben
+		{
+			std::cout<<"#";
+		}
+		if (anthill)//Ist dort auch der Ameisenhügel
+		{
+			std::cout<<"H";
+		}
+		else if(pheromonecounter)//oder ist dort Pheromon
+		{
+			std::cout<<"*";
+		}
+		else if (foodcounter && anthill==0)//oder ist dort Futter, aber ohne den Ameisenhügel
+		{
+			std::cout<<"F";
+		}
+		else//Anscheinend ist dort außer Ameisen nichts
+		{
+			std::cout<<"A ";
+		}
+	}
+	else//Es sind keine Ameisen auf dem Feld!
+	{
+		std::cout<<" ";
+
+		if (anthill)
+		{
+			std::cout<<"H";
+		}
+		else if(pheromonecounter)//oder ist dort Pheromon
+		{
+			std::cout<<"*";
+		}
+		else if (foodcounter && anthill==0)//oder ist dort Futter, aber ohne den Ameisenhügel
+		{
+			std::cout<<"F";
+		}
+		else//Anscheinend ist hier nichts
+		{
+			std::cout<<"  ";
+		}
+	}
+	if (foodcounter)//Es ist Futter auf diesem Feld
+	{
+		if(foodcounter<10)
+		{
+			std::cout<<foodcounter;
+		}
+		else//Auf diesem Feld liegt eine FutterMenge über 9
+		{
+			std::cout<<"#";
+		}
+	}
+	else if (pheromonecounter)
+	{
+		if (pheromonecounter<10)
+		{
+			std::cout<<pheromonecounter;
+		}
+		else//Es liegt mehr als 9 Pheromon auf diesem Feld
+		{
+			std::cout<<"#";
+		}
+	}
+	std::cout<<"|";
+	if (fieldcounter==(columns*multiplier))
+	{
+		std::cout<<std::endl;
+	}
+}
+
+void cPainter::paintLegende()
+{
+	std::cout<<"Legende: A...Ant; *... Pheromone; H...Hill of the Ants; F...Food;"<<std::endl
+		<<"Syntax:"<<std::endl 
+		<<"	-The number on a Field BEFORE an letter shows its Ant amount"<<std::endl
+		<<" -The number on a Field AFTER an letter shows its  Food amount"<<std::endl
+		<<" -The number on a Field AFTER an * shows its Food amount"<<std::endl
+		<<" -The # symbol stands for a number higher then ten"<<std::endl;
 }
 /*
 	
@@ -118,17 +252,17 @@ Round: 3
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 002	|   |   |   | F3|   |   |   |   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-003	|   |   |   |   |   |   |   |   |   |   |   | F8|   |   |	
+003	|   |   |   |   |   |   |   |   |   |   |   |8F |   |   |	
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 004	|   |   |   |   |   |   | F7|   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-005	|   | F7|   |   |   |   |   |   |   | * | * | * |3A9|   |
+005	|   | F7|   |   |   |   |   |   |   | * | * | * |3F9|   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 006	|   |   |   |   |   |   |   |   |   | * |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 007	|   |   |   |   | F5|   | H | * |   | * |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-008	|   |   |   |   |   |   |   | * | * | * |   |   | F3|   |
+008	|   |   |   |   |   |   |   | * |4*2|3*2|   |   | F3|   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 009	|   |   |   | F9|   |   |   |   |   |   |   |   |   |   |
 	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
@@ -141,12 +275,16 @@ Round: 3
 
 Legende: A...Ant; *... Pheromone; H...Anthill; F...Food; B...Barrier;
 Syntax: 
-		The number on a Field BEFORE an Letter shows its Antamount
-		The number on a Field AFTER an Letter shows its  Food Amount*/
+		-The number on a Field BEFORE an letter shows its Ant amount
+		-The number on a Field AFTER an letter shows its  Food amount
+		-The number on a Field AFTER an * shows its Food amount
+		-The # symbol stands for a number higher then ten */
 
 /*
 Anzahl der Futterplätze entspricht 10% der Felder: ((LINES*COLUMNS)*100)/10;
 Auf jedem Futterplatz können zwischen 3 und 30 Stück Futter liegen;
+
+Parameterübergabe und Kontrolle der Environment: SCHÖN WÄRS!!!
 Nach jeder "Visualisierung der Environment" kann man Anweisungen durchführen:
 - mit "get" bekommt man Informationen: 
 	"get z sp" liefert einem alle Infos über das Feld mit Zeilennr. z und Spaltennr. sp
@@ -166,5 +304,4 @@ Nach jeder "Visualisierung der Environment" kann man Anweisungen durchführen:
 	"kill pheromons" fragt einen nach den Koordinaten der Pheromone welche man löschen möchte
 - mit "undo" springt man wieder aus einer Anweisung
 - mit einem einfachen Enter leitet man die nächste Runde ein! 
-*/
 */

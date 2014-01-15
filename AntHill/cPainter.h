@@ -19,6 +19,8 @@ private:
 	int lines;
 	int columns;
 	int fieldcounter;
+	int multiplier;
+	int indexLines;
 
 protected:
 	cPainter(void);
@@ -27,7 +29,12 @@ public:
 	static cPainter* Instance();
 	void update(cSubject*);
 	void paintEnvironment();
+	void paintIndexColumns();
+	void paintHorizontalRaster();
+	void paintIndexLines();
+	void paintInteriorField();
 	void paintLivingEnvironment();
+	void paintLegende();
 };
 
 #endif // !CPAINTER_HEADER
