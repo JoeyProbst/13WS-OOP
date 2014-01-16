@@ -58,15 +58,24 @@ void cField::actItems(int roundIndicator)//Joey: Diese Methode wird von der Meth
 {
 	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); /*++listItemsIterator*/)
 	{
+		int listsize= items.size();
 		std::list<cItem*>::iterator actualIterator =(*listItemsIterator)->act(roundIndicator, listItemsIterator);//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
-		if (actualIterator==listItemsIterator)
+		if(listsize==items.size())
+		{
+			++listItemsIterator;
+		}
+		else
+		{
+			listItemsIterator=items.begin();
+		}
+		/*if (actualIterator==listItemsIterator)
 		{
 			++listItemsIterator;
 		}
 		else
 		{
 			listItemsIterator=actualIterator;
-		}
+		}*/
 	}
 	clearDeadObjects();//deallociere alle toten Items und lösche die Liste der Toten Items
 
