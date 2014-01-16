@@ -10,7 +10,6 @@
 cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL(/*(LINES+COLUMNS+(LINES+COLUMNS)/2)*3*/15),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
 {
 	//Fund=0;
-	attach(cPainter::Instance());
 	state = true; //true = Futtersuche/ false = on my way home
 	ActualPosition->addNewborn(this);
 	carrymehomelist.push_front(ActualPosition);
@@ -34,7 +33,7 @@ Fund=NULL;
 //accessors
 std::list<cItem*>::iterator cAnt::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
-
+	std::cout<<"SIR, Ich bin eine Ameise! SIR "<<"Auf Feld: "<<ActualPosition<<std::endl;
 	std::list<cItem*>::iterator newIterator;
 
 	if(roundIndicator!=roundBasedTurnIndicator)

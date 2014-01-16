@@ -2,18 +2,19 @@
 #ifndef CAREA_HEADER
 #define CAREA_HEADER
 
-#define COLUMNS 10
-#define LINES 10
+#define COLUMNS 3
+#define LINES 3
 
-//#include "cField.h"
 class cField;
 class cCreator;
 class cItem;
 class cAnthill;
 
+#include "cSubject.h"
 #include <cstdlib>//für die random fkt der setAntHill()
 
-class cArea
+class cArea :
+	public cSubject
 {
 private:
 	cArea(const cArea&); //Standard Copy-Constructor eingebaut um den SingletonPattern abzusichern und die Lücke durch den Standard Copy-Constructor, den C++ per default erstellt, zu schließen

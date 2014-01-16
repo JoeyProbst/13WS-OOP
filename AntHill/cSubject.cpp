@@ -1,8 +1,9 @@
 #include "cSubject.h"
 #include "cObserver.h"
 
-cSubject::cSubject(void)
+cSubject::cSubject(int subtyp)
 {
+	subjectTyp=subtyp;
 }
 
 

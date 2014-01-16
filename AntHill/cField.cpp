@@ -5,17 +5,18 @@
 #include "cCreator.h"
 #include "cItem.h"
 #include "cAnthill.h"
+#include "cPainter.h"
 
 
 using namespace std;
 
-cField::cField()
+cField::cField():cSubject(2),pNorth(NULL),pEast(NULL),pSouth(NULL),pWest(NULL)
 {
-	
-	pNorth=NULL;
+	attach(cPainter::Instance());
+	/*pNorth=NULL;
 	pEast=NULL;
 	pSouth=NULL;
-	pWest=NULL;
+	pWest=NULL;*/
 
 	items;//Joey: hier muss noch die Items liste initialisiert werden!
 	deadObjects;

@@ -14,7 +14,7 @@ public:
 	int getSubjectTyp();
 	~cSubject(void);
 protected:
-	cSubject(void);
+	cSubject(int subtyp);
 private:
 	int subjectTyp;//typ=1 für cArea Objecte; typ=2 für cField Objekte
 	std::list<cObserver*>observerList;

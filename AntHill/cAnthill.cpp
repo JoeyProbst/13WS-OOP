@@ -20,7 +20,7 @@ cAnthill::~cAnthill(void)
 //accessors
 std::list<cItem*>::iterator cAnthill::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
-	std::cout<<"Ich bin ein Ameisenhaufen!"<<std::endl;
+	std::cout<<"Ich bin ein Ameisenhaufen! "<<"Auf Feld: "<<Position<<std::endl;
 	check();
 
 	if (foodcounter>0)
@@ -84,7 +84,14 @@ int cAnthill::getantcounter()
 
 void cAnthill::update(cSubject* sub)
 {
-	antcounter--;
+	if (sub->getSubjectTyp()==3)
+	{
+		antcounter--;
+	}
+	else
+	{
+		std::cout<<"Falsches Subject informiert Anthill!";
+	}
 }
 
 

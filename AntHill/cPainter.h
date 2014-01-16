@@ -32,6 +32,7 @@ public:
 	void paintIndexColumns();
 	void paintHorizontalRaster();
 	void paintIndexLines();
+	void paintEmptyStartFields();
 	void paintInteriorField();
 	void paintLivingEnvironment();
 	void paintLegende();

@@ -2,6 +2,7 @@
 #include "cField.h"
 #include "cAnthill.h"
 #include "cCreator.h"
+#include "cPainter.h"
 
 //Variable to control creation of cArea!
 cArea* cArea::_instance=NULL;
@@ -17,10 +18,11 @@ cArea* cArea::Instance()
 }
 
 //Constructor initializes the m x n Array of cField* (environment of our anthill simulation)
-cArea::cArea(void):round(0),FOODamount(0),AnthillPosition(NULL)
+cArea::cArea(void):round(0),FOODamount(0),AnthillPosition(NULL),cSubject(1)
 {
 	//FOODamount=0;
 	//AnthillPosition=0;
+	attach(cPainter::Instance());
 
 	for (int z=0; z< LINES ; z++)
 	{

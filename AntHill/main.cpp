@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-
+#include <iomanip>
 #include "cArea.h"
 #include "cField.h"
 #include "cCreator.h"
@@ -54,9 +54,10 @@ int main(int argc, char* argv[])
 	
 		do
 		{
-			std::cout<<"Runde: "<<environment->getRound()<<std::endl;
-			std::cout<<"Ameisen: "<<environment->getEnvironment_ANTamount()<<std::endl;
-			std::cout<<"Futter im Bau: "<<environment->getHill_FOODamount()<<std::endl;
+			std::cout<<"Round: "<<std::setw(3)<<environment->getRound()<<std::endl;
+			std::cout<<"Ants:  "<<std::setw(3)<<environment->getEnvironment_ANTamount()<<std::endl;
+			std::cout<<"Food:  "<<std::setw(3)<<environment->getHill_FOODamount()<<std::endl<<std::endl;
+			environment->notify();
 			environment->actAll();
 			wait();
 		}while (environment->getEnvironment_ANTamount()  >0 && environment->getHill_FOODamount() >0); //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 

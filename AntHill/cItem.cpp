@@ -1,7 +1,7 @@
 #include "cItem.h"
 
 
-cItem::cItem(void)
+cItem::cItem(void):cSubject(3)
 {
 }
 
