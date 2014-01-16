@@ -1,7 +1,7 @@
 #include "cFood.h"
 #include "cField.h"
 
-cFood::cFood(cField* position):typ(1),Position(position),roundBasedTurnIndicator(0)
+cFood::cFood(cField* position):typ(1),Position(position),roundBasedTurnIndicator(0),cItem(1)
 {
 	Position->adItem(this);
 }

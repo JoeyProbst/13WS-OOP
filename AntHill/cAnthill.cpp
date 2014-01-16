@@ -2,7 +2,7 @@
 #include "cCreator.h"
 #include "cField.h"
 
-cAnthill::cAnthill(cField* position):Position(position),typ(2),foodcounter(50)/*Startkapital an Essen*/,antcounter(0)/*noch keine Ameisen am Anfang*/,roundBasedTurnIndicator(0)
+cAnthill::cAnthill(cField* position):cItem(2),Position(position),typ(2),foodcounter(50)/*Startkapital an Essen*/,antcounter(0)/*noch keine Ameisen am Anfang*/,roundBasedTurnIndicator(0)
 {
 	Position->adItem(this);
 	//ÜBERLEGUNG//Joey: Eine Scheife die für das im foodcounter als Startkapital veranschlagte Essen, cFood in die Liste des Feldes, auf dem der Ameisenhügel steht, legt!
@@ -22,13 +22,12 @@ std::list<cItem*>::iterator cAnthill::act(int roundIndicator, std::list<cItem*>:
 {
 	std::cout<<"Ich bin ein Ameisenhaufen! "<<"Auf Feld: "<<Position<<std::endl;
 	check();
-
+	roundBasedTurnIndicator= roundIndicator;
 	if (foodcounter>0)
 	{
 		setAnt();
 	}
 
-	check();
 
 	return actualIterator;
 }
@@ -41,6 +40,10 @@ void cAnthill::setAnt()//Joey: Diese Methode ruft den Creator auf um eine Ameise
 	//{
 		ant=cCreator::Instance()->create(3, Position);
 		ant->attach(this);
+		//*********RTTI-Test:
+		cAnt* rttiTest=dynamic_cast<cAnt*>(ant);
+		rttiTest->setRoundBasedTurnIndicator(roundBasedTurnIndicator);
+		//*********RTTI-Test
 		antcounter++;
 		foodcounter--;
 	//}

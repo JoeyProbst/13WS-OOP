@@ -1,7 +1,7 @@
 #include "cPheromone.h"
 #include "cField.h"
 
-cPheromone::cPheromone(cField* position):intensity(30),typ(4),Position(position),roundBasedTurnIndicator(0)
+cPheromone::cPheromone(cField* position):cItem(4),intensity(30),typ(4),Position(position),roundBasedTurnIndicator(0)
 {
 }
 

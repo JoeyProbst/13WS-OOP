@@ -7,7 +7,7 @@
 #include <typeinfo>
 
 
-cAnt::cAnt(cField* position):ActualPosition(position),typ(3),TTL(/*(LINES+COLUMNS+(LINES+COLUMNS)/2)*3*/15),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
+cAnt::cAnt(cField* position):cItem(3),ActualPosition(position),typ(3),TTL(/*(LINES+COLUMNS+(LINES+COLUMNS)/2)*3*/15),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
 {
 	//Fund=0;
 	state = true; //true = Futtersuche/ false = on my way home
@@ -201,6 +201,11 @@ void cAnt::giveback()
 					cCreator* factory=cCreator::Instance();
 					factory->create(4, ActualPosition);
 				}
+}
+
+void cAnt::setRoundBasedTurnIndicator(int roundIndicator)
+{
+	roundBasedTurnIndicator=roundIndicator;
 }
 
 //int cAnt::getTTL()

@@ -40,6 +40,7 @@ public:
 	//accessors
 	std::list<cItem*>::iterator act(int roundIndicator, std::list<cItem*>::iterator actualIterator) override;
 	int getTTL();
+	void setRoundBasedTurnIndicator(int roundIndicator);
 };
 
 #endif // !CANT_HEADER

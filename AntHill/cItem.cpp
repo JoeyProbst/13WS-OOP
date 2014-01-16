@@ -1,8 +1,9 @@
 #include "cItem.h"
 
 
-cItem::cItem(void):cSubject(3)
+cItem::cItem(int givenTyp):cSubject(3)
 {
+	typ=givenTyp;
 }
 
 
