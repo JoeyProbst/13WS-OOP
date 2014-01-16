@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 	cArea* environment=cArea::Instance();
 	//Ausgabe der Inizialisierten Area
 	printEnvironment(environment);
-	wait();
+	//wait();
 	
 		do
 		{

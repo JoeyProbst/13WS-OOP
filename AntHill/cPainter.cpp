@@ -81,7 +81,7 @@ void cPainter::update(cSubject* sub)
 		indexLines=0;
 		
 		//system("cls");
-		//Sleep(1000);//in millisek
+		//Sleep(5000);//in millisek
 	}
 }
 
