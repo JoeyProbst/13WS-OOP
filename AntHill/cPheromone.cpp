@@ -13,6 +13,7 @@ cPheromone::~cPheromone(void)
 
 std::list<cItem*>::iterator cPheromone::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)//Joey: zählt die Intensität des Pheromons hinunter!
 {
+	std::cout<<"Ich bin Pheromon!"<<"Position: "<<Position<<std::endl;
 	intensity--;
 	if(intensity==0)
 	{
