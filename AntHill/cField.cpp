@@ -62,7 +62,8 @@ void cField::actItems(int roundIndicator)//Joey: Diese Methode wird von der Meth
 		std::list<cItem*>::iterator actualIterator =(*listItemsIterator)->act(roundIndicator, listItemsIterator);//Joey: Hier dereferenzieren wir (also wir greifen auf die Variable auf die der Zeiger listItemsIterator zeigt zu) und um die Abarbeitungsreihenfolge sicherzustellen muss das in Klammer gesetzt werden!
 		
 		int newlistsize= items.size();
-		if(listsize<newlistsize||listsize==newlistsize)
+		//if(listsize<newlistsize||listsize==newlistsize)
+		if(listsize==newlistsize)
 		{
 			++listItemsIterator;
 		}

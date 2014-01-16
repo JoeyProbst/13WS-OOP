@@ -34,7 +34,12 @@ void cPainter::update(cSubject* sub)
 		round=(*(cArea*)sub).getRound();
 		lines=(*(cArea*)sub).getLines();
 		columns=(*(cArea*)sub).getColumns();
-		paintEnvironment();
+		hillsFood==(*(cArea*)sub).getHill_FOODamount();
+		paintHardFacts();
+		if (round==0)
+		{
+			paintEnvironment();
+		}
 	}
 
 	 antcounter= 0;
@@ -252,6 +257,14 @@ void cPainter::paintLegende()
 		<<"\t"<<"-The number on a Field AFTER an letter shows its  Food amount"<<std::endl
 		<<"\t"<<"-The number on a Field AFTER an * shows its Pheromone amount"<<std::endl
 		<<"\t"<<"-The # symbol stands for a number higher then ten"<<std::endl;
+}
+
+void cPainter::paintHardFacts()
+{
+	std::cout<<"Round:/t/t"<<std::setw(3)<<round<<std::endl;
+	std::cout<<"Ants:/t	/t"<<std::setw(3)<<antcounter<<std::endl;
+	std::cout<<"HillsFood:  "<<std::setw(3)<<hillsFood<<std::endl<<std::endl;
+	//std::cout<<"AreasFood:	"<<std::setw(3)<<environment->getEnvironment_FOODamount()<<std::endl<<std::endl;
 }
 /*
 	

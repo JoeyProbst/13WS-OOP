@@ -11,6 +11,7 @@ private:
 	static cPainter* _instance;
 	cPainter(const cPainter&);
 	int antcounter;
+	int hillsFood;
 	int foodcounter;
 	int anthill;
 	int pheromonecounter;
@@ -36,6 +37,7 @@ public:
 	void paintInteriorField();
 	void paintLivingEnvironment();
 	void paintLegende();
+	void paintHardFacts();
 };
 
 #endif // !CPAINTER_HEADER

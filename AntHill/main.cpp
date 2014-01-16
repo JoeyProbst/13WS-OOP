@@ -51,12 +51,9 @@ int main(int argc, char* argv[])
 	//Ausgabe der Inizialisierten Area
 	printEnvironment(environment);
 	//wait();
-	
+
 		do
 		{
-			std::cout<<"Round: "<<std::setw(3)<<environment->getRound()<<std::endl;
-			std::cout<<"Ants:  "<<std::setw(3)<<environment->getEnvironment_ANTamount()<<std::endl;
-			std::cout<<"Food:  "<<std::setw(3)<<environment->getHill_FOODamount()<<std::endl<<std::endl;
 			environment->notify();
 			environment->actAll();
 			wait();
