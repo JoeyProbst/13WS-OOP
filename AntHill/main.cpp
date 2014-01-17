@@ -41,7 +41,7 @@ void printEnvironment(cArea* environment)//Joey: Nur mal zum überprüfen! ACHTUNG
 
 int main(int argc, char* argv[])
 {
-	try{ //hier hab ich die exception hergenommen, einfach nur zu überprüfrn ob die main() funktioniert.
+//	try{ //hier hab ich die exception hergenommen, einfach nur zu überprüfrn ob die main() funktioniert.
 
 	//Erzeugen eines Painters für die Ausgabe
 	cPainter* painter=cPainter::Instance();
@@ -71,12 +71,12 @@ int main(int argc, char* argv[])
 	wait();
 	delete environment;
 
-	}
-	catch(cmyException& e) //hier werden alle Fehler abgefangen deshalb (...)
-	{
-	std::cerr<<"Fehler id:"<<e.what()<< std::endl;
-	std::cout << "what:" << e.what();
-	}
+	//}
+////	catch(cmyException& e) //hier werden alle Fehler abgefangen deshalb (...)
+//	{
+//	std::cerr<<"Fehler id:"<<e.what()<< std::endl;
+//	std::cout << "what:" << e.what();
+//	}
 	  
 
 

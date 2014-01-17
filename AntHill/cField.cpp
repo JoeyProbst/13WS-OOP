@@ -6,6 +6,7 @@
 #include "cItem.h"
 #include "cAnthill.h"
 #include "cPainter.h"
+//#include "cmyException"
 
 
 using namespace std;
@@ -132,6 +133,7 @@ cItem* cField::getFOODifTHEREis()
 					return Food;
 				}
 			}
+	//throw
 	//Perfekter platz für eine exception!!! Compiler sagt: Nicht alle Steuerelementpfade geben einen Wert zurück.
 }
 
