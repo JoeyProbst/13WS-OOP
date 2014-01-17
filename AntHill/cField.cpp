@@ -125,7 +125,7 @@ cItem* cField::getFOODifTHEREis()
 
 	for (std::list<cItem*>::iterator listItemsIterator=items.begin() ; listItemsIterator != items.end(); ++listItemsIterator)
 			{
-				if((*listItemsIterator)->typ==2)
+				if((*listItemsIterator)->typ==1)
 				{
 					Food=(*listItemsIterator);
 					items.remove(*listItemsIterator);

@@ -99,7 +99,7 @@ std::list<cItem*>::iterator cAnt::search(std::list<cItem*>::iterator actualItera
 	//Entscheidung ist gefallen:
 	srand(time(NULL));
 	int counter=rand()%options.size();//legt das neue Feld per Random fest; Falls nicht mehrere Felder in der optionsListe dann wird das erste Element genommen, welches dann sowieso der besten Wahl entspricht! 
-	for(int i=1; i<counter; i++)
+	for(int i=1; i<counter; i++)//Funktioniert noch nicht so wirklich - Iterator überdenken!
 	{
 		options.pop_front();
 	}
