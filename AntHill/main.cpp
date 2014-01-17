@@ -6,6 +6,7 @@
 #include "cCreator.h"
 #include "cItem.h"
 #include "cPainter.h"
+#include "cmyException.h"
 
 //using namespace std;
 void wait()//Diese Funktion ist von http://www.c-plusplus.de/forum/111042-full um das Automatische Schlieﬂen der Konsole zu verhindern! 
@@ -69,13 +70,14 @@ int main(int argc, char* argv[])
 	}*/
 	wait();
 	delete environment;
-	
-	}
-	catch(...) //hier werden alle Fehler abgefangen deshalb (...)
-	{
-std::cerr<<"Fehler in der main!!"<<std::endl;
-	}
 
+	}
+	catch(cmyException& e) //hier werden alle Fehler abgefangen deshalb (...)
+	{
+	std::cerr<<"Fehler id:"<<e.what()<< std::endl;
+	std::cout << "what:" << e.what();
+	}
+	  
 
 
 	return 0;
