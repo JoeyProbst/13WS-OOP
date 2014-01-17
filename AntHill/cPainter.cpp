@@ -17,7 +17,7 @@ cPainter* cPainter::Instance()
 	return _instance;
 }
 
-cPainter::cPainter(void):fieldcounter(0),multiplier(0),indexLines(0)
+cPainter::cPainter(void):fieldcounter(0),multiplier(0),indexLines(0),antcounter(0)
 {
 }
 
@@ -34,11 +34,13 @@ void cPainter::update(cSubject* sub)
 		round=(*(cArea*)sub).getRound();
 		lines=(*(cArea*)sub).getLines();
 		columns=(*(cArea*)sub).getColumns();
-		hillsFood==(*(cArea*)sub).getHill_FOODamount();
-		paintHardFacts();
+		hillsFood=(*(cArea*)sub).getHill_FOODamount();
+		
 		if (round==0)
 		{
+			paintHardFacts();
 			paintEnvironment();
+			//paintLivingEnvironment();
 		}
 	}
 
@@ -108,6 +110,7 @@ void cPainter::paintLivingEnvironment()
 {
 		if(fieldcounter==1)//Die Indize der Spalten werden vor dem zeichnen des ersten fields ausgegeben
 		{
+			paintHardFacts();
 			paintIndexColumns();
 		}
 		if (fieldcounter==((columns*multiplier)+1))
@@ -184,7 +187,7 @@ void cPainter::paintInteriorField()
 		}
 		else//Anscheinend ist dort auﬂer Ameisen nichts
 		{
-			std::cout<<"A ";
+			std::cout<<"A";
 		}
 	}
 	else//Es sind keine Ameisen auf dem Feld!
@@ -205,8 +208,12 @@ void cPainter::paintInteriorField()
 		}
 		else//Anscheinend ist hier nichts
 		{
-			std::cout<<"  ";
+			std::cout<<" ";
 		}
+	}
+	if(foodcounter==0 && pheromonecounter==0)
+	{
+		std::cout<<" ";
 	}
 	if (foodcounter)//Es ist Futter auf diesem Feld
 	{
@@ -225,7 +232,7 @@ void cPainter::paintInteriorField()
 		{
 			std::cout<<pheromonecounter;
 		}
-		else//Es liegt mehr als 9 Pheromon auf diesem Feld
+		else if(pheromonecounter>9)//Es liegt mehr als 9 Pheromon auf diesem Feld
 		{
 			std::cout<<"#";
 		}
@@ -261,9 +268,9 @@ void cPainter::paintLegende()
 
 void cPainter::paintHardFacts()
 {
-	std::cout<<"Round:/t/t"<<std::setw(3)<<round<<std::endl;
-	std::cout<<"Ants:/t	/t"<<std::setw(3)<<antcounter<<std::endl;
-	std::cout<<"HillsFood:  "<<std::setw(3)<<hillsFood<<std::endl<<std::endl;
+	std::cout<<"\n"<<"actualRound: "<<"\t"<<std::setw(3)<<round<<std::endl;
+	std::cout<<"activeAnts: "<<"\t"<<std::setw(3)<<antcounter<<std::endl;
+	std::cout<<"HillsFood: "<<"\t"<<std::setw(3)<<hillsFood<<std::endl<<std::endl;
 	//std::cout<<"AreasFood:	"<<std::setw(3)<<environment->getEnvironment_FOODamount()<<std::endl<<std::endl;
 }
 /*

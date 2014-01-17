@@ -5,6 +5,7 @@
 #include "cCreator.h"
 #include "cItem.h"
 #include <typeinfo>
+#include <time.h>
 
 
 cAnt::cAnt(cField* position):cItem(3),ActualPosition(position),typ(3),TTL(/*(LINES+COLUMNS+(LINES+COLUMNS)/2)*3*/15),roundBasedTurnIndicator(0),Fund(NULL)//,Lunchbox(100)//Joey: Lunchbox muss noch ausgearbeitet werden!
@@ -12,7 +13,7 @@ cAnt::cAnt(cField* position):cItem(3),ActualPosition(position),typ(3),TTL(/*(LIN
 	//Fund=0;
 	state = true; //true = Futtersuche/ false = on my way home
 	ActualPosition->addNewborn(this);
-	carrymehomelist.push_front(ActualPosition);
+	//carrymehomelist.push_front(ActualPosition);
 //	Lunchbox=100;
 	
 }
@@ -96,6 +97,7 @@ std::list<cItem*>::iterator cAnt::search(std::list<cItem*>::iterator actualItera
 	}
 
 	//Entscheidung ist gefallen:
+	srand(time(NULL));
 	int counter=rand()%options.size();//legt das neue Feld per Random fest; Falls nicht mehrere Felder in der optionsListe dann wird das erste Element genommen, welches dann sowieso der besten Wahl entspricht! 
 	for(int i=1; i<counter; i++)
 	{
@@ -104,8 +106,9 @@ std::list<cItem*>::iterator cAnt::search(std::list<cItem*>::iterator actualItera
 
 	std::list<cItem*>::iterator newIterator =ActualPosition->remByIterator(actualIterator);//Die Ameise wird aus der Liste des Aktuellen Feldes herausgenommen unter zuhilfenahme des Iterators
 	//ActualPosition->remItem(this);//Die Ameise wird aus der Liste des Aktuellen Feldes herausgenommen
-	ActualPosition = options.front();//die Wahl des nächsten Feldes wird in die ActualPosition geschrieben
 	carrymehomelist.push_back(ActualPosition);//Die neue Actual Position wird in der carrymehomeListe hinten angehängt
+	ActualPosition = options.front();//die Wahl des nächsten Feldes wird in die ActualPosition geschrieben
+	//carrymehomelist.push_back(ActualPosition);//Die neue Actual Position wird in der carrymehomeListe hinten angehängt
 	ActualPosition->adItem(this);//Die Ameise wird auf dem neuen Feld in die ItemsListe eingetragen
 
 	return newIterator;
@@ -113,15 +116,17 @@ std::list<cItem*>::iterator cAnt::search(std::list<cItem*>::iterator actualItera
 
 int cAnt::compare(/*const*/ cField* choice, /*const*/ cField* current)
 {
-	if (carrymehomelist.back()==choice)//choice entspricht dem letzten besuchten Feld
+	if(carrymehomelist.size()!=0)
 	{
-		return -1; //choice ist falsch
+		if (carrymehomelist.back()==choice)//choice entspricht dem letzten besuchten Feld
+		{
+			return -1; //choice ist falsch
+		}
+		if (carrymehomelist.back()==current)//current entspricht dem letzten besuchten Feld
+		{
+			return 1;//current ist falsch
+		}
 	}
-	if (carrymehomelist.back()==current)//current entspricht dem letzten besuchten Feld
-	{
-		return 1;//current ist falsch
-	}
-
 	if (current==NULL)
 	{
 		return 1;//current enspricht einer Areagrenze!

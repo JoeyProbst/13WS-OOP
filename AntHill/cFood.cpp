@@ -14,6 +14,10 @@ cFood::~cFood(void)
 //accessors
 std::list<cItem*>::iterator cFood::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
-	std::cout<<"Ich bin Futter! Jammi"<<"Auf dem Feld: "<<Position<<std::endl;
+	if(roundIndicator!=roundBasedTurnIndicator)
+	{
+		std::cout<<"Ich bin Futter! Jammi"<<"Auf dem Feld: "<<Position<<std::endl;
+		roundBasedTurnIndicator=roundIndicator;
+	}
 	return actualIterator;
 }

@@ -3,6 +3,7 @@
 #include "cAnthill.h"
 #include "cCreator.h"
 #include "cPainter.h"
+#include <time.h>
 
 //Variable to control creation of cArea!
 cArea* cArea::_instance=NULL;
@@ -70,6 +71,14 @@ cArea::cArea(void):round(0),FOODamount(0),AnthillPosition(NULL),cSubject(1)
 	{
 		setFood(z, sp,xhill,yhill);
 	}
+	
+	//for (int z=0; z< LINES ; z++)
+	//{
+	//	for (int sp= 0; sp< COLUMNS; sp++)
+	//	{
+	//		Array_ofFieldptrs[z][sp]->notify();//das Notify eines jeden Fields wird aufgerufen
+	//	}
+	//}
 }
 
 
@@ -92,7 +101,7 @@ cArea::~cArea(void)
 
 void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren und bei jedem Field dessen Methode actItems() aufrufen. 
 {
-	round++;//Rundenzähler wird bei jedem actAll() um eins erhöht
+	++round;//Rundenzähler wird bei jedem actAll() um eins erhöht
 	int roundIndicator=round%2;
 
 	for (int z=0; z< LINES ; z++)
@@ -102,7 +111,7 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 			Array_ofFieldptrs[z][sp]->actItems(roundIndicator);//Joey: Hier kommt die Fieldmethode actItems() zum Einsatz;
 		}
 	}
-
+	notify();
 	//der Painter wird informiert
 	for (int z=0; z< LINES ; z++)
 	{
@@ -119,6 +128,7 @@ void cArea::actAll()//Joey: actAll() soll das Array_ofFieldptr durchiterieren un
 cItem* cArea::setAntHill(int z, int sp, int & xhill, int & yhill )//Joey: Initialisiert den Ameisenhaufen auf dem Array_ofFieldptrs - d.h. diese Methode ruft den Creator auf um ihn zu erzeugen und positioniert den Ameisenhaufen dann auf einem der Fields des Arrays. 
 {
 	cItem* anthill;
+	//srand(time(NULL));//Um es wirklich zufällig zu machen!
 
 	if (z ==LINES && sp ==COLUMNS )//Joey: Da die Indizes genau dem Grenzwert entsprechen wird der Ameisenhaufen per Random auf ein Field platziert.
 	{

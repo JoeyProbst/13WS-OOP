@@ -6,10 +6,10 @@ cAnthill::cAnthill(cField* position):cItem(2),Position(position),typ(2),foodcoun
 {
 	Position->adItem(this);
 	//ÜBERLEGUNG//Joey: Eine Scheife die für das im foodcounter als Startkapital veranschlagte Essen, cFood in die Liste des Feldes, auf dem der Ameisenhügel steht, legt!
-	for (int i = 0; i <= antcounter; i++)
-	{
-		cCreator::Instance()->create(1,Position);
-	}
+	//for (int i = 0; i <= antcounter; i++)
+	//{
+	//	cCreator::Instance()->create(1,Position);
+	//}
 }
 
 
@@ -20,14 +20,17 @@ cAnthill::~cAnthill(void)
 //accessors
 std::list<cItem*>::iterator cAnthill::act(int roundIndicator, std::list<cItem*>::iterator actualIterator)
 {
-	std::cout<<"Ich bin ein Ameisenhaufen! "<<"Auf Feld: "<<Position<<std::endl;
-	check();
-	roundBasedTurnIndicator= roundIndicator;
-	if (foodcounter>0)
+	if(roundIndicator!=roundBasedTurnIndicator)
 	{
-		setAnt();
+		std::cout<<"Ich bin ein Ameisenhaufen! "<<"Auf Feld: "<<Position<<std::endl;
+		check();
+		roundBasedTurnIndicator= roundIndicator;
+		if (foodcounter>0)
+		{
+			setAnt();
+		}
+		roundBasedTurnIndicator=roundIndicator;
 	}
-
 
 	return actualIterator;
 }

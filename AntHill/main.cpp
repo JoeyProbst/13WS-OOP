@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 			environment->notify();
 			environment->actAll();
 			wait();
-		}while (environment->getEnvironment_ANTamount()  >0 && environment->getHill_FOODamount() >0); //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 
+		}while (environment->getEnvironment_ANTamount()  >0 || environment->getHill_FOODamount() >0); //Joey: läuft solange nicht das Essen innerhalb des Ameisenhügels aufgebraucht und Ameisen auf der Area sind! 
 		
 		//um auf jedem Field die Methode cField::actItems() aufzurufen, in welcher dann die Liste "items" durchlaufen wird
 		//um von jedem Item die Methode act() aufzurufen! 
