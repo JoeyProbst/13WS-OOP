@@ -178,6 +178,7 @@ void cAnt::take()//Futter aufnehmen
 		if (ActualPosition->getTypamount(1)>0)//Liegt hier Futter?
 		{
 			Fund=ActualPosition->getFOODifTHEREis();//Futter nehmen!
+			state=false;
 		}
 		
 	}
@@ -186,8 +187,8 @@ void cAnt::take()//Futter aufnehmen
 std::list<cItem*>::iterator cAnt::gohome(std::list<cItem*>::iterator actualIterator)//Mit gefundenem Futter nach Hause gehen
 {
 	std::list<cItem*>::iterator newIterator =ActualPosition->remByIterator(actualIterator);//Die Ameise wird aus der Liste des Aktuellen Feldes herausgenommen unter zuhilfenahme des Iterators
-	//ActualPosition->remItem(this);//Ameise wird vom aktuellen Feld aus dessen Liste genommen!
-	carrymehomelist.pop_back();//das letzte Element in der carrymehomelist wird herausgenommen!
+	ActualPosition->remItem(this);//Ameise wird vom aktuellen Feld aus dessen Liste genommen!
+	//carrymehomelist.pop_back();//das letzte Element in der carrymehomelist wird herausgenommen!
 	ActualPosition= carrymehomelist.back();//das nächste letzte Element wird zur ActualPosition!
 	ActualPosition->adItem(this);//auf dem neuen Feld wird die Ameise in die Liste eingetragen!
 
